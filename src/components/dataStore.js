@@ -13,6 +13,8 @@ export const res = {
 
 export const decades = ["1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s"];
 
+export const decadeWords = ["fifties", "sixties", "seventies", "eighties", "ninties", "naughts", "tens"];
+
 export const randomImages = [
   {
 "format": "jpeg",

@@ -1,0 +1,46 @@
+h2 {
+  text-align: left;
+  padding-left: 100px;
+  margin-top: 0;
+}
+
+.bottom-li {
+  padding-bottom: 10px;
+}
+
+.decade-container {
+  margin: 0 auto;
+  margin-left: -5%;
+}
+
+.decade {
+  padding-bottom: 20px;
+}
+
+.fifties {
+background: linear-gradient(#0d0d26, #004d4d);
+}
+
+.sixties {
+background: linear-gradient(#004d4d, #4d4d00);
+}
+
+.seventies {
+background: linear-gradient(#4d4d00, #4d1a00);
+}
+
+.eighties {
+background: linear-gradient(#4d1a00, #4d0000);
+}
+
+.ninties {
+background: linear-gradient(#4d0000, #391339);
+}
+
+.naughts {
+background: linear-gradient(#391339, #0d0d26);
+}
+
+.tens {
+background: linear-gradient(#0d0d26, #004d4d);
+}

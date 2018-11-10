@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './main.css';
+import './decade.css';
 import './hex-grid.css';
 import { res, randomImages } from './dataStore';
 import ArtistIcon from './artist-icon'
@@ -19,11 +20,13 @@ export default function Decade(props) {
       <ArtistIcon imageUrl='https://placeimg.com/200/200/people' artistName={artistIcon} />);
   addEmptyHex(artistIcons);
   return (
-    <section>
+    <section className={props.class}>
         <h2>{props.title}</h2>
-        <ul id="grid" class="clear">
-          {artistIcons}
-        </ul>
+        <div className="decade-container">
+          <ul id="grid" class="clear">
+            {artistIcons}
+          </ul>
+        </div>
     </section>
   )
 }
