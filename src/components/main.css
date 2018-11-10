@@ -1,0 +1,124 @@
+* {
+  box-sizing: border-box;
+}
+body, button {
+  font-family: 'Open Sans', sans-serif;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  min-height: 60px;
+  background-color: gray;
+  margin: -8px;
+  color: white;
+
+}
+
+ul {
+  list-style-type: none;
+}
+
+nav li {
+  float: left;
+  padding-right: 10px;
+}
+
+h1, h2, h3 {
+  font-family: 'PT Sans Narrow', sans-serif;
+  text-align: center;
+}
+
+.artistograms {
+  padding: 25px 0;
+  background-color: #f2f4f7;
+}
+
+.playlists {
+  padding: 25px 0;
+  background-color: lightgray;
+}
+
+ul.artistogram-list, ul.playlist-list {
+  padding-inline-start: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  list-style-type: none;
+}
+
+.artistogram-list, .playlist-list {
+  flex-direction: column;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.artist, .playlist {
+  padding: 10px 0;
+  margin: 0 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.artist:nth-child(odd) {
+  background-color: lightgray;
+}
+
+.playlist:nth-child(odd) {
+  background-color: #f2f4f7;
+}
+
+.artist:nth-child(even) {
+  background-color: white
+}
+
+.playlist:nth-child(even) {
+  background-color: white;
+}
+
+.artist-name, .playlist-name {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+form {
+  margin: 0 auto;
+  max-width: 75%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+fieldset {
+  border: 1px solid, black;
+  text-align: center;
+  padding: 8px 10px;
+  padding-bottom: 20px;
+}
+
+label {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  align-items: center;
+  padding: inherit;
+}
+
+input {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-left: 5px;
+    padding: inherit;
+}
+
+button {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin: 8px 10px;
+  min-width: 50%;
+  padding: inherit;
+  font-weight: 700;
+}
