@@ -1,0 +1,39 @@
+form {
+  margin: 0 auto;
+  max-width: 75%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+fieldset {
+  border: 1px solid, black;
+  text-align: center;
+  padding: 8px 10px;
+  padding-bottom: 20px;
+}
+
+label {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  align-items: center;
+  padding: inherit;
+}
+
+input {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-left: 5px;
+    padding: inherit;
+}
+
+button {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin: 8px 10px;
+  min-width: 50%;
+  padding: inherit;
+  padding-bottom: 10px;
+  font-weight: 700;
+}
