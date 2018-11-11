@@ -1,28 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import LandingPage from './components/landing-page';
+import ArtistogramPage from './components/artistogram-page';
 
-class App extends Component {
-  render() {
+import './components/main.css';
+
+export default function App(props) {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+        <Router>
+            <div className="app">
+                <main>
+                    <Route exact path="/" component={LandingPage} />
+                    <Route exact path="/artistogram/" component={ArtistogramPage} />
+                </main>
+            </div>
+        </Router>
     );
-  }
 }
-
-export default App;

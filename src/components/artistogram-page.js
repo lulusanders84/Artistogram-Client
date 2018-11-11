@@ -6,10 +6,11 @@ import Artistogram from './artistogram';
 import { decades, res } from './dataStore';
 
 export default function ArtistogramPage(props) {
+  const navBarLinks = ["log in", "sign up", "dashboard", "create playlist", "create new Artistogram"];
 return (
   <div>
     <header>
-      <NavBar />
+      <NavBar links={navBarLinks}/>
     </header>
     <Artistogram />
   </div>
