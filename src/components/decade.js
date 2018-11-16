@@ -21,7 +21,7 @@ export default function Decade(props) {
   addEmptyHex(artistIcons);
   return (
     <section className={props.class}>
-        <h2>{props.title}</h2>
+        <h2 className="decade">{props.title}</h2>
         <div className="decade-container">
           <ul id="grid" class="clear">
             {artistIcons}

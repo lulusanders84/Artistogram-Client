@@ -41,17 +41,12 @@ h1, h2, h3 {
   text-align: center;
 }
 
-.artistograms {
+.artistograms, .playlists {
   padding: 25px 0;
-  background-color: #f2f4f7;
-}
-
-.playlists {
-  padding: 25px 0;
-  background-color: lightgray;
 }
 
 ul.artistogram-list, ul.playlist-list {
+  background-color: #0d0d26;
   padding-inline-start: 0;
   padding: 0;
   display: flex;
@@ -68,7 +63,7 @@ ul.artistogram-list, ul.playlist-list {
 
 .artist, .playlist {
   padding: 10px 0;
-  margin: 0 10px;
+  margin: 0 auto;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -93,4 +88,10 @@ ul.artistogram-list, ul.playlist-list {
 .artist-name, .playlist-name {
   font-size: 1rem;
   font-weight: 700;
+}
+
+.list-image {
+  float: left;
+  width: 100px;
+  height: 100px;
 }

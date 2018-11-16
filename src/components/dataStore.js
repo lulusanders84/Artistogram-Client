@@ -15,6 +15,48 @@ export const decades = ["1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2
 
 export const decadeWords = ["fifties", "sixties", "seventies", "eighties", "ninties", "naughts", "tens"];
 
+export const userData = [
+  {
+    username: "Lucy",
+    password: "password",
+    artistograms: [
+      {
+        name: "Oasis",
+        image: "https://i.pinimg.com/236x/d9/db/c6/d9dbc673354e24e582bd59654a5bd1ce--oasis-band-mod-hair.jpg"
+      },
+      {
+        name: "Coldplay",
+        image: "https://consequenceofsound.files.wordpress.com/2015/02/coldplay.jpg?quality=80&w=400&h=400&crop=1"
+      },
+      {
+        name: "Travis",
+        image: "https://i.pinimg.com/originals/40/9b/55/409b551b323e30965e8385abd78aba31.jpg"
+      },
+      {
+        name: "Johnny Cash",
+        image: "https://www.abc.net.au/news/image/9639832-3x2-700x467.jpg"
+      }
+     ],
+    playlists: [
+      {
+        name: "Oasis",
+        image: "https://i.pinimg.com/236x/d9/db/c6/d9dbc673354e24e582bd59654a5bd1ce--oasis-band-mod-hair.jpg"
+      },
+      {
+        name: "Coldplay",
+        image: "https://consequenceofsound.files.wordpress.com/2015/02/coldplay.jpg?quality=80&w=400&h=400&crop=1"
+      },
+      {
+        name: "Travis",
+        image: "https://i.pinimg.com/originals/40/9b/55/409b551b323e30965e8385abd78aba31.jpg"
+      },
+      {
+        name: "Johnny Cash",
+        image: "https://www.abc.net.au/news/image/9639832-3x2-700x467.jpg"
+      }
+     ]
+  }
+]
 export const randomImages = [
   {
 "format": "jpeg",
