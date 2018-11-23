@@ -9,10 +9,9 @@ export default function ListItem(props) {
 
   return (
     <ul id="grid" class="clear">
-      <ArtistIcon imageUrl={props.imgSrc} />
-      <h4>
-        {props.artistName}
-      </h4>
+      <ArtistIcon imageUrl={props.imgSrc} className="hexagon-list-item" />
+      <h4>{props.artistName}</h4>
+      <p>Created on: {props.created}</p>
     </ul>
   )
 }

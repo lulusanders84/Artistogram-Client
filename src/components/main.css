@@ -41,6 +41,16 @@ h1, h2, h3 {
   text-align: center;
 }
 
+h2 {
+  margin: 0 auto;
+  text-align: center;
+  width: 80%;
+}
+
+.title-container {
+  text-align: left;
+}
+
 .artistograms, .playlists {
   padding: 25px 0;
 }

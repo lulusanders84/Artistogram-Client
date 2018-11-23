@@ -6,10 +6,14 @@ import CreateArtistogram from './create-artistogram';
 
 export default function LandingPage(props) {
   const navBarLinks = ["log in", "sign up"];
+  function createArtistogram(event) {
+        event.preventDefault();
+        props.history.push(`/artistogram`);
+  }
   return (
     <div>
       <NavBar links={navBarLinks}/>
-      <CreateArtistogram />
+      <CreateArtistogram onSubmit={e => createArtistogram(e)}/>
     </div>
   )
 }

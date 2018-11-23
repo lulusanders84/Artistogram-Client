@@ -1,0 +1,27 @@
+.export {
+  display: block;
+  margin: auto;
+  padding-top: 10px;
+
+}
+
+.playlist-list {
+  margin-top: 20px;
+}
+
+.playlist-list > li {
+  display: flex;
+}
+
+.song, .playlist-artist, .length {
+  display: flex;
+}
+
+.song, .playlist-artist {
+  flex: 4;
+  justify-content: flex-start;
+}
+
+.length {
+  flex: 1;
+}

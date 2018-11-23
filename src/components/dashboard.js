@@ -6,14 +6,14 @@ import NavBar from './nav-bar';
 
 
 export default function Dashboard(props) {
-  const navBarLinks = ["log out", "create new Artistogram"];
+  const navBarLinks = ["log out", "create new artistogram"];
   return (
 
     <div>
       <NavBar links={navBarLinks}/>
-      <h1>Dashboard</h1>
-      <List user="Lucy" listType="artistogram" />
-      <List user="Lucy" listType="playlist" />
+      <h1>dashboard</h1>
+      <List user="Lucy" listType="artistogram" linkType="artistogram" />
+      <List user="Lucy" listType="playlist" linkType="playlist" />
     </div>
   )
 }

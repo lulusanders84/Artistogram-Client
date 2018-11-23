@@ -1,7 +1,8 @@
 h2.decade {
-  text-align: left;
-  padding-left: 100px;
-  margin-top: 0;
+  h2 {
+    margin: 0 auto;
+    width: 80%;
+  }
 }
 
 .bottom-li {
@@ -14,6 +15,7 @@ h2.decade {
 }
 
 .decade {
+  padding-top: 20px;
   padding-bottom: 20px;
 }
 
