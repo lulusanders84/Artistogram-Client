@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './main.css';
+import './forms.css';
 import './hex-grid.css';
 import './create-artistogram.css';
 import {setFocalArtist} from '../actions'

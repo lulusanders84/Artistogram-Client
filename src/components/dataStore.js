@@ -1,3 +1,28 @@
+
+export const navBarLinksData = [
+  {
+    link: "log in",
+    url: "login"
+  },
+  {
+    link: "sign up",
+    url: "signup"
+  },
+  {
+    link: "dashboard",
+    url: "dashboard"
+  },
+  {
+    link: "create playlist",
+    url: "create-playlist"
+  },
+  {
+    link: "create new artistogram",
+    url: ""
+  }
+];
+
+
 export const playlist = [
     {
       name: "song",
