@@ -3,17 +3,24 @@ import './main.css';
 import './dashboard.css';
 import List from './list';
 import NavBar from './nav-bar';
+import { connect } from 'react-redux'
 
 
-export default function Dashboard(props) {
+export function Dashboard(props) {
   const navBarLinks = ["log out", "create new artistogram"];
   return (
 
     <div>
       <NavBar links={navBarLinks}/>
-      <h1>dashboard</h1>
+      <h1>{props.user}'s dashboard</h1>
       <List user="Lucy" listType="artistogram" linkType="artistogram" />
       <List user="Lucy" listType="playlist" linkType="playlist" />
     </div>
   )
 }
+
+const mapStateToProps = (state, props) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(Dashboard);
