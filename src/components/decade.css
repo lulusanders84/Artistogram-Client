@@ -15,6 +15,7 @@ h2.decade {
 }
 
 .decade {
+  margin-top: -5px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -33,6 +34,7 @@ background: linear-gradient(#4d4d00, #4d1a00);
 
 .eighties {
 background: linear-gradient(#4d1a00, #4d0000);
+margin-bottom: -1px;
 }
 
 .ninties {

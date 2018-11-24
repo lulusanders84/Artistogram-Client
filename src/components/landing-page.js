@@ -13,7 +13,7 @@ export default function LandingPage(props) {
   return (
     <div>
       <NavBar links={navBarLinks}/>
-      <CreateArtistogram onSubmit={e => createArtistogram(e)}/>
+      <CreateArtistogram focalArtist="oasis" />
     </div>
   )
 }

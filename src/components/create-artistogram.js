@@ -2,20 +2,36 @@ import React, { Component } from 'react';
 import './main.css';
 import './hex-grid.css';
 import './create-artistogram.css';
+import {setFocalArtist} from '../actions'
+import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-export default function CreateArtistogram(props) {
-  return (
-    <div id="create">
-      <h1>Artistogram</h1>
-      <form onSubmit={props.onSubmit}>
-        <fieldset>
-          <legend>Enter your favourite musician or band to create an Artistogram</legend>
-          <div>
-            <input type="text" value="Oasis"/>
-            <input type="submit" />
-          </div>
-        </fieldset>
-      </form>
-    </div>
-  )
+export class CreateArtistogram extends React.Component {
+
+  handleSetFocalArtist(event) {
+    // console.log("setFocalArtist");
+    event.preventDefault();
+    this.props.dispatch(setFocalArtist(this.textInput.value));
+    this.props.history.push(`/artistogram`);
+  }
+  render() {
+
+    return (
+
+      <div id="create">
+        <h1>Artistogram</h1>
+        <form onSubmit={event => this.handleSetFocalArtist(event)}>
+          <fieldset>
+            <legend>Enter your favourite musician or band to create an Artistogram</legend>
+            <div>
+              <input type="text" ref={input => this.textInput = input}/>
+              <input type="submit" />
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    )
+  }
 }
+
+export default withRouter(connect()(CreateArtistogram));
