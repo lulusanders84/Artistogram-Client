@@ -12,7 +12,7 @@ export const artistogramReducer = (state=initialState, action) => {
     });
     case 'SET_USER':
     return Object.assign({}, state, {
-      user: action.user
+      user: action.user.toLowerCase()
     });
   }
 }

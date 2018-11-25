@@ -205,7 +205,7 @@ export const decadeWords = ["fifties", "sixties", "seventies", "eighties", "nint
 
 export const userData = [
   {
-    username: "Lucy",
+    username: "lucy",
     password: "password",
     artistograms: [
       {

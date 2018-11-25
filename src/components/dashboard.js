@@ -13,8 +13,8 @@ export function Dashboard(props) {
     <div>
       <NavBar links={navBarLinks}/>
       <h1>{props.user}'s dashboard</h1>
-      <List user="Lucy" listType="artistogram" linkType="artistogram" />
-      <List user="Lucy" listType="playlist" linkType="playlist" />
+      <List user={props.user} listType="artistogram" linkType="artistogram" />
+      <List user={props.user} listType="playlist" linkType="playlist" />
     </div>
   )
 }

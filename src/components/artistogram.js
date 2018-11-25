@@ -9,7 +9,7 @@ export function Artistogram(props) {
   const decadeSections = decades.map((decade, index) => <Decade title={decade} class={`decade ${decadeWords[index]}`} />);
     return (
       <div>
-        <h1>musicians related to... {props.focalArtist}</h1>
+        <h1>musicians related to...{props.focalArtist}</h1>
         <section class="artistogram">
           {decadeSections}
         </section>
