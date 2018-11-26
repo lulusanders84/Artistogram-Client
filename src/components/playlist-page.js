@@ -5,7 +5,7 @@ import NavBar from './nav-bar';
 import Playlist from './playlist';
 
 export default function PlaylistPage(props) {
-  const navBarLinks = ["log in", "sign up", "dashboard", "create new artistogram"];
+  const navBarLinks = ["sign up", "dashboard", "create new artistogram"];
   return (
     <div>
       <NavBar links={navBarLinks} />

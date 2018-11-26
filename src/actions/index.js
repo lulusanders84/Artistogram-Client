@@ -7,5 +7,6 @@ export const setFocalArtist = (artist) => ({
 export const SET_USER = 'SET_USER';
 export const setUser = (username) => ({
   type: SET_USER,
-  user: username
+  user: username,
+  loggedIn: false
 })

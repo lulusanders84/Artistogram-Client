@@ -5,7 +5,7 @@ import NavBar from './nav-bar';
 import CreateArtistogram from './create-artistogram';
 
 export default function LandingPage(props) {
-  const navBarLinks = ["log in", "sign up"];
+  const navBarLinks = ["sign up"];
   function createArtistogram(event) {
         event.preventDefault();
         props.history.push(`/artistogram`);
@@ -13,7 +13,7 @@ export default function LandingPage(props) {
   return (
     <div>
       <NavBar links={navBarLinks}/>
-      <CreateArtistogram focalArtist="oasis" />
+      <CreateArtistogram />
     </div>
   )
 }

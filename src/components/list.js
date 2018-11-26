@@ -4,9 +4,10 @@ import './artist-icon.css';
 import './dashboard.css';
 import { userData } from './dataStore';
 import ArtistIcon from './artist-icon';
-import { emptyHex, addEmptyHex } from './empty-hex';
+import { addEmptyHex } from './empty-hex';
+import {connect} from 'react-redux';
 
-export default function List(props) {
+export function List(props) {
   const user = userData.reduce((acc, user) => {
     if(user.username === props.user) {
       acc = user;
@@ -30,3 +31,9 @@ export default function List(props) {
 </section>
   )
 }
+
+const mapStateToProps = (state, props) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(List);

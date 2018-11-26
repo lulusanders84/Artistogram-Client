@@ -10,7 +10,6 @@ import { withRouter } from 'react-router-dom';
 export class CreateArtistogram extends React.Component {
 
   handleSetFocalArtist(event) {
-    // console.log("setFocalArtist");
     event.preventDefault();
     this.props.dispatch(setFocalArtist(this.textInput.value));
     this.props.history.push(`/artistogram`);

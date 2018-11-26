@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 
 
 export function Dashboard(props) {
-  const navBarLinks = ["log out", "create new artistogram"];
+  const navBarLinks = ["create new artistogram"];
   return (
 
     <div>
@@ -19,7 +19,7 @@ export function Dashboard(props) {
   )
 }
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = state => ({
   user: state.user
 });
 

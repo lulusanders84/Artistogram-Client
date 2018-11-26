@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './main.css';
 import { Link } from 'react-router-dom';
 import { navBarLinksData } from './dataStore';
+import LoggedIn from './logged-in';
 
 export default function NavBar(props) {
   const navBarLinks =
@@ -17,6 +18,7 @@ export default function NavBar(props) {
   return (
     <nav>
       <ul>
+        <LoggedIn />
         {navBarLinks}
       </ul>
     </nav>

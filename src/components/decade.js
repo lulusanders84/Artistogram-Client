@@ -3,16 +3,8 @@ import './main.css';
 import './decade.css';
 import './hex-grid.css';
 import { res, randomImages } from './dataStore';
-import ArtistIcon from './artist-icon'
-
-export const emptyHex = <ArtistIcon imageUrl="" />;
-export function addEmptyHex(artistIcons) {
-  for(let i=0; i < artistIcons.length; i++) {
-    if (i % 8 == 0) {
-      artistIcons.splice(i, 0, emptyHex);
-    }
-  }
-}
+import ArtistIcon from './artist-icon';
+import { addEmptyHex } from './empty-hex';
 
 export default function Decade(props) {
   let artistIcons =

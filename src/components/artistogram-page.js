@@ -6,7 +6,7 @@ import Artistogram from './artistogram';
 import { decades, res, navBarLinksData } from './dataStore';
 
 export default function ArtistogramPage(props) {
-  const links = ["log in", "sign up", "dashboard", "create playlist", "create new artistogram"];
+  const links = ["sign up", "dashboard", "create playlist", "create new artistogram"];
 
 return (
   <div>
