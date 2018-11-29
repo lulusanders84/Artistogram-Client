@@ -12,7 +12,6 @@ export class ArtistIcon extends React.Component {
 
   link(linkType) {
     const artistName = this.props.artistName;
-    console.log(artistName);
     const url = `/${linkType}`;
 
     return (
@@ -26,7 +25,6 @@ export class ArtistIcon extends React.Component {
   };
 
   handleSetFocalArtist(artist) {
-    console.log(artist);
     this.props.dispatch(setFocalArtist(artist));
   }
 

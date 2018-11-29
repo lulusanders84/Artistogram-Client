@@ -5,11 +5,12 @@ import './hex-grid.css';
 import { res, randomImages } from './dataStore';
 import ArtistIcon from './artist-icon';
 import { addEmptyHex } from './empty-hex';
+import { connect } from 'react-redux';
 
-export default function Decade(props) {
+export function Decade(props) {
   let artistIcons =
-    res.artists[props.title].map(artistIcon =>
-      <ArtistIcon imageUrl='https://placeimg.com/200/200/people' artistName={artistIcon} className="hexagon" linkType="artist" />);
+    props.artistogramArtists.map(artistIcon =>
+      <ArtistIcon imageUrl={artistIcon.imageUrl} artistName={artistIcon.name} className="hexagon" linkType="artist" />);
   addEmptyHex(artistIcons);
   return (
     <section className={props.class}>
@@ -22,3 +23,10 @@ export default function Decade(props) {
     </section>
   )
 }
+
+const mapStateToProps = (state, props) => ({
+  focalArtist: state.focalArtist,
+  artistogramArtists: state.artistogramArtists
+});
+
+export default connect(mapStateToProps)(Decade);

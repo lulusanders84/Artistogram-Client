@@ -1,4 +1,6 @@
 
+const url = 'https://musicbrainz.org/ws/2/artist/39ab1aed-75e0-4140-bd47-540276886b60'
+
 export const navBarLinksData = [
   {
     link: "log in",
