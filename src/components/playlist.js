@@ -2,18 +2,24 @@ import React, { Component } from 'react';
 import './main.css';
 import './hex-grid.css';
 import './playlist.css';
-import { playlist } from './dataStore';
 import { connect } from 'react-redux';
+import { addPlaylist } from '../actions';
+import PlaylistItem from './playlist-item';
 
 export class Playlist extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    this.props.dispatch(addPlaylist(this.props.playlist));
+  }
   render () {
-    const songs = playlist.map(song => {
+    const songs = this.props.playlist.map(song => {
       return (
-        <li>
-          <div className="song">{song.name}</div>
-          <div className="playlist-artist">{song.artist}</div>
-          <div className="length">{song.length}</div>
-        </li>
+        <PlaylistItem
+        name={song.trackinfo.track.name}
+        artist={song.trackinfo.track.artist.name}
+        duration={song.trackinfo.track.duration} />
       )
     })
     window.scrollTo(0, 0);
@@ -35,7 +41,7 @@ export class Playlist extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  focalArtist: state.focalArtist
+  focalArtist: state.focalArtist,
 });
 
 export default connect(mapStateToProps)(Playlist);

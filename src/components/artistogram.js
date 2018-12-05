@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './main.css';
 import './hex-grid.css';
 import Decade from './decade';
-import { fetchSimilarArtists, fetchTopAlbums } from '../actions';
+import { buildArtistogramArtists, dummy } from '../actions';
 import { decades, decadeWords, res } from './dataStore';
 import {connect} from 'react-redux';
 
@@ -11,10 +11,12 @@ export class Artistogram extends React.Component {
     super(props);
   };
   componentDidMount() {
-    this.props.dispatch(fetchSimilarArtists(this.props.focalArtist))
+    this.props.dispatch(buildArtistogramArtists(this.props.focalArtist))
 }
   render() {
-    const decadeSections = decades.map((decade, index) => <Decade title={decade} class={`decade ${decadeWords[index]}`} />);
+    window.scrollTo(0, 0);
+    console.log(this.props.playlist);
+    const decadeSections = decades.map((decade, index) => <Decade title={decade} class={`decade ${decadeWords[index]}`} decade={decadeWords[index]}  />);
       return (
         <div>
           <h1>musicians related to...{this.props.focalArtist}</h1>
@@ -29,7 +31,7 @@ export class Artistogram extends React.Component {
   const mapStateToProps = (state, props) => ({
     focalArtist: state.focalArtist,
     artistogramArtists: state.artistogramArtists,
-    topAlbums: state.topAlbums,
+    playlist: state.playlist,
 });
 
 export default connect(mapStateToProps)(Artistogram);

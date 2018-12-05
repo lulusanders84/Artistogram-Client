@@ -7,7 +7,14 @@ const initialState = {
   focalArtist: 'oasis',
   user: 'lucy',
   loggedIn: false,
-  artistogramArtists: []
+  fifties: [],
+  sixties: [],
+  seventies: [],
+  eighties: [],
+  ninties: [],
+  aughts: [],
+  tens: [],
+  playlist:[{trackinfo: {track: {artist: {name: 'oasis'}, name: 'Wonderwall', duration: 120000}}}]
 }
 export const artistogramReducer = (state=initialState, action) => {
   switch(action.type) {
@@ -21,22 +28,26 @@ export const artistogramReducer = (state=initialState, action) => {
         loggedIn: true
       });
     case 'ADD_ARTISTOGRAM_ARTISTS':
-      console.log(action);
-      const newArtists = action.artistogramArtists.map((artist, index) => {
-        return {
-         name: artist.name,
-         mbid: artist.mbid,
-         imageUrl: artist.image[3]["#text"],
-        }
-      })
+      const newArtists = action.artistogramArtists;
       return Object.assign({}, state, {
-            artistogramArtists: [...state.artistogramArtists, ...newArtists]
+            fifties: [...newArtists[5]],
+            sixties: [...newArtists[6]],
+            seventies: [...newArtists[7]],
+            eighties: [...newArtists[8]],
+            ninties: [...newArtists[9]],
+            aughts: [...newArtists[0]],
+            tens: [...newArtists[1]],
+
           });
-          case 'ADD_TOP_ALBUMS':
-      console.log(action.albums)
-      // return Object.assign({}, state, {
-      //       topAlbums: [...action.topAlbums]
-      //     });
+    case 'CLEAR_ARTISTOGRAM_ARTISTS':
+      return Object.assign({}, state, {
+
+      })
+    case 'ADD_PLAYLIST':
+      console.log('added playlist', action.playlist);
+      return Object.assign({}, state, {
+        playlist: action.playlist
+      });
     default:
       return state;
   }

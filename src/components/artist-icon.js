@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './main.css';
 import './hex-grid.css';
-import {setFocalArtist} from '../actions';
+import {setFocalArtist, buildArtistogramArtists} from '../actions';
 import { connect } from 'react-redux';
 
 export class ArtistIcon extends React.Component {
@@ -26,6 +26,7 @@ export class ArtistIcon extends React.Component {
 
   handleSetFocalArtist(artist) {
     this.props.dispatch(setFocalArtist(artist));
+    this.props.dispatch(buildArtistogramArtists(artist));
   }
 
   render() {
