@@ -172,6 +172,22 @@ function fetchTrackInfo(artist, track) {
     })
   }
 
+  export const fetchAndSetFocalArtistInfo = (focalArtist) => dispatch => {
+    const API_URL = setLAST_FM_REQUEST_URL("artist.getInfo", focalArtist, 1);
+    fetch(API_URL)
+    .then(res => {
+      return res.json();
+    }).then(focalArtist => {
+      const artist = {
+        name: focalArtist.artist.name,
+        imageUrl: focalArtist.artist.image[3]["#text"],
+        playlist: []
+      };
+      dispatch(setFocalArtist(artist));
+      dispatch(setPlaylist(artist.playlist))
+    })
+  }
+
 export const SET_FOCAL_ARTIST = 'SET_FOCAL_ARTIST';
 export const setFocalArtist = (artist) => ({
     type: SET_FOCAL_ARTIST,
@@ -200,4 +216,12 @@ export const ADD_PLAYLIST = 'ADD_PLAYLIST';
 export const addPlaylist = (playlist) => ({
   type: ADD_PLAYLIST,
   playlist,
+})
+
+export const ADD_SAVED_PLAYLIST = 'ADD_SAVED_PLAYLIST';
+export const addSavedPlaylist = (playlist, title, image) => ({
+  type: ADD_SAVED_PLAYLIST,
+  playlist,
+  title,
+  image,
 })

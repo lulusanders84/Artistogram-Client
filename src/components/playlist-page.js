@@ -8,11 +8,11 @@ import { connect } from 'react-redux';
 export class PlaylistPage extends React.Component {
 
   render() {
-    const navBarLinks = ["sign up", "dashboard", "create new artistogram"];
+    const navBarLinks = ["sign up", "dashboard", "save playlist", "create new artistogram"];
     return (
       <div>
         <NavBar links={navBarLinks} />
-        <Playlist playlist={this.props.playlist}/>
+        <Playlist />
       </div>
     )
   }

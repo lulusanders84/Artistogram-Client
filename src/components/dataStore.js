@@ -24,7 +24,11 @@ export const navBarLinksData = [
   },
   {
     link: "save artistogram",
-    url: "dashboard"
+    url: "save-artistogram"
+  },
+  {
+    link: "save playlist",
+    url: "save-playlist"
   }
 ];
 
@@ -216,44 +220,44 @@ export const userData = [
     artistograms: [
       {
         name: "Oasis",
-        image: "https://i.pinimg.com/236x/d9/db/c6/d9dbc673354e24e582bd59654a5bd1ce--oasis-band-mod-hair.jpg",
+        imageUrl: "https://i.pinimg.com/236x/d9/db/c6/d9dbc673354e24e582bd59654a5bd1ce--oasis-band-mod-hair.jpg",
         createDate: "11/15/18"
       },
       {
         name: "Coldplay",
-        image: "https://consequenceofsound.files.wordpress.com/2015/02/coldplay.jpg?quality=80&w=400&h=400&crop=1",
+        imageUrl: "https://consequenceofsound.files.wordpress.com/2015/02/coldplay.jpg?quality=80&w=400&h=400&crop=1",
         createDate: "11/08/18"
       },
       {
         name: "Travis",
-        image: "https://i.pinimg.com/originals/40/9b/55/409b551b323e30965e8385abd78aba31.jpg",
+        imageUrl: "https://i.pinimg.com/originals/40/9b/55/409b551b323e30965e8385abd78aba31.jpg",
         createDate: "10/15/18"
       },
       {
         name: "Johnny Cash",
-        image: "https://www.abc.net.au/news/image/9639832-3x2-700x467.jpg",
+        imageUrl: "https://www.abc.net.au/news/image/9639832-3x2-700x467.jpg",
         createDate: "11/01/18"
       }
      ],
     playlists: [
       {
         name: "Oasis",
-        image: "https://i.pinimg.com/236x/d9/db/c6/d9dbc673354e24e582bd59654a5bd1ce--oasis-band-mod-hair.jpg",
+        imageUrl: "https://i.pinimg.com/236x/d9/db/c6/d9dbc673354e24e582bd59654a5bd1ce--oasis-band-mod-hair.jpg",
         createDate: "11/15/18"
       },
       {
         name: "Coldplay",
-        image: "https://consequenceofsound.files.wordpress.com/2015/02/coldplay.jpg?quality=80&w=400&h=400&crop=1",
+        imageUrl: "https://consequenceofsound.files.wordpress.com/2015/02/coldplay.jpg?quality=80&w=400&h=400&crop=1",
         createDate: "11/08/18"
       },
       {
         name: "Travis",
-        image: "https://i.pinimg.com/originals/40/9b/55/409b551b323e30965e8385abd78aba31.jpg",
+        imageUrl: "https://i.pinimg.com/originals/40/9b/55/409b551b323e30965e8385abd78aba31.jpg",
         createDate: "10/15/18"
       },
       {
         name: "Johnny Cash",
-        image: "https://www.abc.net.au/news/image/9639832-3x2-700x467.jpg",
+        imageUrl: "https://www.abc.net.au/news/image/9639832-3x2-700x467.jpg",
         createDate: "11/01/18"
       }
      ]

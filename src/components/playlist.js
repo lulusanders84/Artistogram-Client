@@ -5,27 +5,32 @@ import './playlist.css';
 import { connect } from 'react-redux';
 import { addPlaylist } from '../actions';
 import PlaylistItem from './playlist-item';
+import uuid from 'uuid/v4';
 
+// <PlaylistItem
+//   name={song.trackinfo.track.name}
+//   artist={song.trackinfo.track.artist.name}
+//   duration={song.trackinfo.track.duration}
+//   key={uuid()} />
 export class Playlist extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    this.props.dispatch(addPlaylist(this.props.playlist));
-  }
-  render () {
-    const songs = this.props.playlist.map(song => {
+
+  render() {
+
+    const songs = this.props.playlist.slice(0, 4).map(song => {
       return (
         <PlaylistItem
-        name={song.trackinfo.track.name}
-        artist={song.trackinfo.track.artist.name}
-        duration={song.trackinfo.track.duration} />
+          name="oasis" />
       )
     })
+    console.log(this.props.playlist, 'playlist from store');
+    console.log(songs);
     window.scrollTo(0, 0);
     return (
       <div>
-        <h1>{this.props.focalArtist} artistogram playlist</h1>
+        <h1>{this.props.focalArtist.name} artistogram playlist</h1>
         <button className="export">Export to Spotify</button>
         <ul className="playlist-list">
           <li>
@@ -42,6 +47,8 @@ export class Playlist extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   focalArtist: state.focalArtist,
+  playlist: state.playlist,
+
 });
 
 export default connect(mapStateToProps)(Playlist);
