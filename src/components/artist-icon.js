@@ -26,9 +26,9 @@ export class ArtistIcon extends React.Component {
   handleSetFocalArtist(artist) {
     this.props.dispatch(setFocalArtist(artist));
     this.props.dispatch(buildArtistogramArtists(artist));
-    // const playlist = this.props.savedPlaylists.filter(playlist => playlist.trackinfo.track.artist.name === artist);
+    const playlist = this.props.savedPlaylists.filter(playlist => playlist.trackinfo.track.artist.name === artist);
     console.log(this.props.savedPlaylists);
-    // this.props.dispatch(addPlaylist(playlist));
+    this.props.dispatch(addPlaylist(playlist));
   }
 
   render() {

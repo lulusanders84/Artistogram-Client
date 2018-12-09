@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { navBarLinksData } from './dataStore';
 import LoggedIn from './logged-in';
 import uuid from 'uuid/v4';
+import store from '../store.js';
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export default class NavBar extends React.Component {
     return (
       <nav>
         <ul>
-          <LoggedIn key={uuid()}/>
+          <LoggedIn key={uuid()} store={store}/>
           {navBarLinks}
         </ul>
       </nav>
