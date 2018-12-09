@@ -15,8 +15,8 @@ export const navBarLinksData = [
     url: "dashboard"
   },
   {
-    link: "create playlist",
-    url: "create-playlist"
+    link: "view playlist",
+    url: "playlist"
   },
   {
     link: "create new artistogram",

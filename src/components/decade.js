@@ -7,7 +7,7 @@ import ArtistIcon from './artist-icon';
 import { buildArtistogramArtists } from '../actions';
 import { addEmptyHex } from './empty-hex';
 import { connect } from 'react-redux';
-
+import uuid from 'uuid/v4';
 
 export class Decade extends React.Component {
   constructor(props) {
@@ -22,13 +22,14 @@ export class Decade extends React.Component {
           imageUrl={artistIcon.imageUrl}
           artistName={artistIcon.name}
           className="hexagon"
-          linkType="artistogram" />);
+          linkType="artistogram"
+          key={uuid()}/>);
     addEmptyHex(artistIcons);
     return (
       <section className={this.props.class}>
-          <h2><div class="decade title-container">{this.props.title}</div></h2>
+          <h2><div className="decade title-container">{this.props.title}</div></h2>
           <div className="decade-container">
-            <ul id="grid" class="clear">
+            <ul id="grid" className="clear">
               {artistIcons}
             </ul>
           </div>

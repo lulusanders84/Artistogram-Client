@@ -3,7 +3,7 @@ import './main.css';
 import './forms.css';
 import './hex-grid.css';
 import './create-artistogram.css';
-import {setFocalArtist} from '../actions'
+import {setFocalArtistName} from '../actions'
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ export class CreateArtistogram extends React.Component {
 
   handleSetFocalArtist(event) {
     event.preventDefault();
-    this.props.dispatch(setFocalArtist({name:this.textInput.value}));
+    this.props.dispatch(setFocalArtistName({name: this.textInput.value}));
     this.props.history.push(`/artistogram`);
   }
   render() {

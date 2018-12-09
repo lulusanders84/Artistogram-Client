@@ -3,7 +3,7 @@ import './main.css';
 import { Link } from 'react-router-dom';
 import { navBarLinksData } from './dataStore';
 import LoggedIn from './logged-in';
-import CreatePlaylist from './create-playlist';
+import uuid from 'uuid/v4';
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -20,8 +20,9 @@ export default class NavBar extends React.Component {
     const navBarLinks =
       navBarLinksData.reduce((acc, data) => {
         this.props.links.forEach(link => {
+          let linkComponent = <Link to={data.url}  className="nav-bar-link">{link}</Link>;
           if(link == data.link) {
-            acc.push(<li><Link to={data.url}  className="nav-bar-link">{link}</Link></li>);
+            acc.push(<li key={uuid()}>{linkComponent}</li>);
           }
         })
         return acc;
@@ -30,9 +31,8 @@ export default class NavBar extends React.Component {
     return (
       <nav>
         <ul>
-          <LoggedIn />
+          <LoggedIn key={uuid()}/>
           {navBarLinks}
-          <CreatePlaylist />
         </ul>
       </nav>
     )

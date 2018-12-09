@@ -14,7 +14,7 @@ const initialState = {
   ninties: [],
   aughts: [],
   tens: [],
-  playlist:[{trackinfo: {track: {artist: {name: 'oasis'}, name: 'Wonderwall', duration: 120000}}}],
+  playlist:[{trackInfo: {track: {artist: {name: 'oasis'}, name: 'Wonderwall', duration: 120000}}}],
   savedPlaylists: [
     {
       name: "Oasis P",
@@ -63,7 +63,16 @@ export const artistogramReducer = (state=initialState, action) => {
   switch(action.type) {
     case 'SET_FOCAL_ARTIST':
       return Object.assign({}, state, {
-        focalArtist: action.artist
+        focalArtist: {
+          name: action.name,
+          imageUrl: action.imageUrl
+        }
+      });
+    case 'SET_FOCAL_ARTIST_NAME':
+      return Object.assign({}, state, {
+        focalArtist: {
+          name: action.name
+        }
       });
     case 'SET_USER':
       return Object.assign({}, state, {
@@ -99,7 +108,7 @@ export const artistogramReducer = (state=initialState, action) => {
       }
       return Object.assign({}, state, {
         savedPlaylists: [...state.savedPlaylists, newPlaylist]
-      })
+      });
     default:
       return state;
   }

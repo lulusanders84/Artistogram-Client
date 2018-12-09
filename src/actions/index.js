@@ -16,9 +16,20 @@ export const buildArtistogramArtists = (focalArtist) => dispatch => {
     const newArtists = addYearToArtists(artists)
     return newArtists;
   }).then(artists => {
-
+    console.log('artists', artists);
     return sortArtistsToDecades(artists);
   }).then(sortedArtists => {
+    let artists = [
+      ...sortedArtists["5"],
+      ...sortedArtists["6"],
+      ...sortedArtists["7"],
+      ...sortedArtists["8"],
+      ...sortedArtists["9"],
+      ...sortedArtists["0"],
+      ...sortedArtists["1"],
+    ];
+
+    dispatch(buildArtistogramPlaylist(artists));
     dispatch(addArtistogramArtists(sortedArtists));
   })
 }
@@ -63,6 +74,9 @@ function fetchOriginYear(artists) {
     let API_URL = encodeURI(setMbRequestUrl(artistStr));
     return fetch(API_URL)
     .then(res => {
+      if (!res.ok) {
+          return Promise.reject(res.statusText);
+      }
       return res.json();
     })
 }
@@ -71,6 +85,9 @@ function fetchFirstAlbumYear(mbid) {
   const API_URL = setMbAlbumsRequestUrl(mbid);
   return fetch(API_URL)
     .then(res => {
+      if (!res.ok) {
+          return Promise.reject(res.statusText);
+      }
       return res.json();
     }).then(details => {
       if(details.releases.length > 0) {
@@ -142,13 +159,16 @@ export const buildArtistogramPlaylist = (artists) => dispatch => {
     .then(track => {
       return fetchTrackInfo(artist.name, track)
       .then(trackInfo => {
+        if(trackInfo.message !== 'Track not found') {
           acc.push({
             trackInfo
           })
+        }
       })
     })
     return acc;
   }, [])
+    console.log(playlist, 'inside buildArtistogramPlaylist');
     dispatch(addPlaylist(playlist));
 }
 
@@ -156,6 +176,9 @@ function fetchTopTrack(artist) {
   let API_URL = setTracksRequestUrl(artist.mbid);
   return fetch(API_URL)
   .then(res => {
+    if (!res.ok) {
+        return Promise.reject(res.statusText);
+    }
     return res.json();
   }).then(topTracks => {
       return topTracks.toptracks.track[0].name;
@@ -166,6 +189,9 @@ function fetchTrackInfo(artist, track) {
   let API_URL = setTrackInfoRequestUrl(artist, track);
   return fetch(API_URL)
   .then(res => {
+    if (!res.ok) {
+        return Promise.reject(res.statusText);
+    }
     return res.json();
   }).then(trackInfo => {
       return trackInfo;
@@ -176,22 +202,30 @@ function fetchTrackInfo(artist, track) {
     const API_URL = setLAST_FM_REQUEST_URL("artist.getInfo", focalArtist, 1);
     fetch(API_URL)
     .then(res => {
+      if (!res.ok) {
+          return Promise.reject(res.statusText);
+      }
       return res.json();
     }).then(focalArtist => {
       const artist = {
         name: focalArtist.artist.name,
         imageUrl: focalArtist.artist.image[3]["#text"],
-        playlist: []
       };
       dispatch(setFocalArtist(artist));
-      dispatch(setPlaylist(artist.playlist))
     })
   }
 
 export const SET_FOCAL_ARTIST = 'SET_FOCAL_ARTIST';
 export const setFocalArtist = (artist) => ({
     type: SET_FOCAL_ARTIST,
-    artist
+    name: artist.name,
+    imageUrl: artist.imageUrl,
+});
+
+export const SET_FOCAL_ARTIST_NAME = 'SET_FOCAL_ARTIST_NAME';
+export const setFocalArtistName = (artist) => ({
+    type: SET_FOCAL_ARTIST_NAME,
+    name: artist.name,
 });
 
 export const SET_USER = 'SET_USER';

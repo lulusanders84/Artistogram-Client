@@ -5,6 +5,7 @@ import Decade from './decade';
 import { buildArtistogramArtists, fetchAndSetFocalArtistInfo } from '../actions';
 import { decades, decadeWords, res } from './dataStore';
 import {connect} from 'react-redux';
+import uuid from 'uuid/v4';
 
 export class Artistogram extends React.Component {
   constructor(props) {
@@ -17,11 +18,18 @@ export class Artistogram extends React.Component {
   render() {
     window.scrollTo(0, 0);
     console.log(this.props.playlist);
-    const decadeSections = decades.map((decade, index) => <Decade title={decade} class={`decade ${decadeWords[index]}`} decade={decadeWords[index]}  />);
+    const decadeSections = decades.map((decade, index) =>
+        <Decade
+          title={decade}
+          class={`decade ${decadeWords[index]}`}
+          decade={decadeWords[index]}
+          key={uuid()}
+        />
+    );
       return (
         <div>
           <h1>musicians related to...{this.props.focalArtist.name}</h1>
-          <section class="artistogram">
+          <section className="artistogram">
             {decadeSections}
           </section>
         </div>

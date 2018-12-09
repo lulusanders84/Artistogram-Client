@@ -7,22 +7,21 @@ import { addPlaylist } from '../actions';
 import PlaylistItem from './playlist-item';
 import uuid from 'uuid/v4';
 
-// <PlaylistItem
-//   name={song.trackinfo.track.name}
-//   artist={song.trackinfo.track.artist.name}
-//   duration={song.trackinfo.track.duration}
-//   key={uuid()} />
+
 export class Playlist extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-
-    const songs = this.props.playlist.slice(0, 4).map(song => {
+    const songs = this.props.playlist.map((song, index) => {
+      console.log('song', song, index);
       return (
         <PlaylistItem
-          name="oasis" />
+          name={song.trackInfo.track.name}
+          artist={song.trackInfo.track.artist.name}
+          duration={song.trackInfo.track.duration}
+          key={uuid()} />
       )
     })
     console.log(this.props.playlist, 'playlist from store');
