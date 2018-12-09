@@ -15,7 +15,6 @@ export default function App(props) {
     return (
         <Router>
             <div className="app">
-                <main>
                     <Route exact path="/" component={LandingPage} />
                     <Route exact path="/artistogram/" component={ArtistogramPage} />
                     <Route exact path="/dashboard/" component={Dashboard} />
@@ -24,7 +23,6 @@ export default function App(props) {
                     <Route exact path="/playlist/" component={PlaylistPage} />
                     <Route exact path="/create/" component={CreateArtistogram} />
                     <Route exact path="/save-playlist/" component={SavePlaylist} />
-                </main>
             </div>
         </Router>
     );

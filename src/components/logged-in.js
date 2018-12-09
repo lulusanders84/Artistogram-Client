@@ -21,4 +21,4 @@ const mapStateToProps = (state, props) => ({
   loggedIn: state.loggedIn
 });
 
-export default connect(mapStateToProps)(LoggedIn);
+export default connect(mapStateToProps, store)(LoggedIn);
