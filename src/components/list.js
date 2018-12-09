@@ -3,7 +3,7 @@ import './main.css';
 import './artist-icon.css';
 import './dashboard.css';
 import { userData } from './dataStore';
-import ArtistIcon from './artist-icon';
+import PlaylistIcon from './playlist-icon';
 import { addEmptyHex } from './empty-hex';
 import {connect} from 'react-redux';
 
@@ -29,7 +29,7 @@ export class List extends React.Component {
     const listItems = dataSource.map(listItem => {
         console.log("data source", dataSource);
         return (
-          <ArtistIcon imageUrl={listItem.imageUrl} artistName={listItem.name} className="hexagon" linkType={this.props.linkType} />
+          <PlaylistIcon imageUrl={listItem.imageUrl} artistName={listItem.name} className="hexagon" linkType={this.props.linkType} />
         )
     });
     addEmptyHex(listItems);

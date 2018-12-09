@@ -62,6 +62,7 @@ const initialState = {
 export const artistogramReducer = (state=initialState, action) => {
   switch(action.type) {
     case 'SET_FOCAL_ARTIST':
+      console.log(action);
       return Object.assign({}, state, {
         focalArtist: {
           name: action.name,
@@ -95,7 +96,7 @@ export const artistogramReducer = (state=initialState, action) => {
       return Object.assign({}, state, {
 
       })
-    case 'ADD_PLAYLIST':
+    case 'SET_PLAYLIST':
       console.log('added playlist', action.playlist);
       return Object.assign({}, state, {
         playlist: action.playlist

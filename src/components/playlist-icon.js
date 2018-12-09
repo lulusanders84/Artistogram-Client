@@ -2,33 +2,37 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './main.css';
 import './hex-grid.css';
-import {setFocalArtistName, buildArtistogramArtists, addPlaylist} from '../actions';
+import {setFocalArtist, buildArtistogramArtists, setPlaylist} from '../actions';
 import { connect } from 'react-redux';
 
-export class ArtistIcon extends React.Component {
+export class PlaylistIcon extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  link(linkType) {
+  link() {
     const artistName = this.props.artistName;
-    const url = `/${linkType}`;
-
     return (
       <Link
-        to={url}
+        to='/playlist'
         className="artist-name">
-          <div onClick={event => this.handleSetFocalArtist(artistName)}>{artistName}</div>
+          <div onClick={event => this.handlePlaylistSelection(artistName)}>{artistName}</div>
       </Link>
     );
   };
-
-  handleSetFocalArtist(artist) {
-    this.props.dispatch(setFocalArtistName(artist));
-    this.props.dispatch(buildArtistogramArtists(artist));
+  handlePlaylistSelection(artistName) {
+    const selectedPlaylist = this.props.savedPlaylists.reduce((acc, savedPlaylist) => {
+      console.log(savedPlaylist);
+      if(savedPlaylist.name === artistName) {
+        acc = savedPlaylist;
+      }
+      return acc;
+    }, {});
+    this.props.dispatch(setFocalArtist(selectedPlaylist));
+    this.props.dispatch(setPlaylist(selectedPlaylist.playlist));
   }
-
   render() {
+    console.log(this.props.artistName);
     const hexStyle = {
       backgroundImage: 'url(' + this.props.imageUrl + ')',
       backgroundSize: 'cover',
@@ -40,7 +44,7 @@ export class ArtistIcon extends React.Component {
         <div className={this.props.className} style={hexStyle}>
           <div className="artist-container">
             <div className="artist-name">
-              {this.link(this.props.linkType)}
+              {this.link()}
             </div>
           </div>
         </div>
@@ -55,4 +59,4 @@ const mapStateToProps = (state, props) => ({
   savedPlaylists: state.savedPlaylists,
 });
 
-export default connect()(ArtistIcon);
+export default connect(mapStateToProps)(PlaylistIcon);

@@ -3,7 +3,7 @@ import './main.css';
 import './decade.css';
 import './hex-grid.css';
 import { res, randomImages } from './dataStore';
-import ArtistIcon from './artist-icon';
+import ArtistogramIcon from './artistogram-icon';
 import { buildArtistogramArtists } from '../actions';
 import { addEmptyHex } from './empty-hex';
 import { connect } from 'react-redux';
@@ -18,7 +18,7 @@ export class Decade extends React.Component {
     const decadeArtists = `${this.props.decade}Artists`;
     let artistIcons =
       this.props[decadeArtists].map(artistIcon =>
-        <ArtistIcon
+        <ArtistogramIcon
           imageUrl={artistIcon.imageUrl}
           artistName={artistIcon.name}
           className="hexagon"

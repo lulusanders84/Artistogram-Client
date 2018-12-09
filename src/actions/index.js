@@ -16,7 +16,6 @@ export const buildArtistogramArtists = (focalArtist) => dispatch => {
     const newArtists = addYearToArtists(artists)
     return newArtists;
   }).then(artists => {
-    console.log('artists', artists);
     return sortArtistsToDecades(artists);
   }).then(sortedArtists => {
     let artists = [
@@ -168,8 +167,7 @@ export const buildArtistogramPlaylist = (artists) => dispatch => {
     })
     return acc;
   }, [])
-    console.log(playlist, 'inside buildArtistogramPlaylist');
-    dispatch(addPlaylist(playlist));
+    dispatch(setPlaylist(playlist));
 }
 
 function fetchTopTrack(artist) {
@@ -225,7 +223,7 @@ export const setFocalArtist = (artist) => ({
 export const SET_FOCAL_ARTIST_NAME = 'SET_FOCAL_ARTIST_NAME';
 export const setFocalArtistName = (artist) => ({
     type: SET_FOCAL_ARTIST_NAME,
-    name: artist.name,
+    name: artist,
 });
 
 export const SET_USER = 'SET_USER';
@@ -246,9 +244,9 @@ export const clearArtistogramArtists = () => ({
   type: CLEAR_ARTISTOGRAM_ARTISTS,
 })
 
-export const ADD_PLAYLIST = 'ADD_PLAYLIST';
-export const addPlaylist = (playlist) => ({
-  type: ADD_PLAYLIST,
+export const SET_PLAYLIST = 'SET_PLAYLIST';
+export const setPlaylist = (playlist) => ({
+  type: SET_PLAYLIST,
   playlist,
 })
 

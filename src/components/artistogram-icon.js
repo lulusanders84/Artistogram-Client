@@ -5,18 +5,18 @@ import './hex-grid.css';
 import {setFocalArtistName, buildArtistogramArtists, addPlaylist} from '../actions';
 import { connect } from 'react-redux';
 
-export class ArtistIcon extends React.Component {
+
+export class ArtistogramIcon extends React.Component {
   constructor(props) {
     super(props);
   }
 
   link(linkType) {
     const artistName = this.props.artistName;
-    const url = `/${linkType}`;
 
     return (
       <Link
-        to={url}
+        to='/artistogram'
         className="artist-name">
           <div onClick={event => this.handleSetFocalArtist(artistName)}>{artistName}</div>
       </Link>
@@ -55,4 +55,4 @@ const mapStateToProps = (state, props) => ({
   savedPlaylists: state.savedPlaylists,
 });
 
-export default connect()(ArtistIcon);
+export default connect()(ArtistogramIcon);

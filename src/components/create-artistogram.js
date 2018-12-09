@@ -11,7 +11,7 @@ export class CreateArtistogram extends React.Component {
 
   handleSetFocalArtist(event) {
     event.preventDefault();
-    this.props.dispatch(setFocalArtistName({name: this.textInput.value}));
+    this.props.dispatch(setFocalArtistName(this.textInput.value));
     this.props.history.push(`/artistogram`);
   }
   render() {
