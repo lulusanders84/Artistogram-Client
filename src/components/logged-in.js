@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './main.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import store from '../store.js';
 
 export class LoggedIn extends React.Component {
   constructor(props) {
@@ -22,4 +21,4 @@ const mapStateToProps = (state, props) => ({
   loggedIn: state.loggedIn
 });
 
-export default connect(mapStateToProps, store)(LoggedIn);
+export default connect(mapStateToProps)(LoggedIn);
