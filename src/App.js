@@ -11,7 +11,7 @@ import SavePlaylist from './components/save-playlist';
 
 import './components/main.css';
 
-export default function App(props) {
+export function App(props) {
     return (
         <Router>
             <div className="app">
