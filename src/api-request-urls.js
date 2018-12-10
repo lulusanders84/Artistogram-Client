@@ -24,9 +24,9 @@ export function setLAST_FM_TOP_ALBUMS_REQUEST_URL(mbid) {
   return `${LAST_FM_URL}method=artist.getTopAlbums&mbid=${mbid}&api_key=${LAST_FM_API_KEY}&format=json`;
 }
 export function setMbRequestUrl(artists) {
-  return `http://musicbrainz.org/ws/2/artist/?query=${artists}&fmt=json&limit=100`;
+  return `https://musicbrainz.org/ws/2/artist/?query=${artists}&fmt=json&limit=100`;
 }
 
 export function setMbAlbumsRequestUrl(mbid) {
-  return `http://musicbrainz.org/ws/2/artist/${mbid}?inc=releases&fmt=json`;
+  return `https://musicbrainz.org/ws/2/artist/${mbid}?inc=releases&fmt=json`;
 }
