@@ -2,38 +2,38 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './main.css';
 import './forms.css';
-import {addSavedPlaylist} from '../actions';
+import {addSavedArtistogram} from '../actions';
 import { connect } from 'react-redux';
 
-export class SavePlaylist extends React.Component {
+export class SaveArtistogram extends React.Component {
   constructor(props) {
     super(props);
   }
-  handleSavePlaylist(event) {
+  handleSaveArtistogram(event) {
     event.preventDefault();
-    console.log("handlesaveplaylist");
+    console.log("handlesaveArtistogram");
     const title = this.textInput.value;
-    this.props.dispatch(addSavedPlaylist(this.props.playlist, title, this.props.focalArtist.imageUrl));
+    this.props.dispatch(addSavedArtistogram(title, this.props.focalArtist.imageUrl));
     this.props.history.push('/dashboard');
   }
   render() {
-    const playlistTitle = this.props.focalArtist.name;
+    const artistogramTitle = this.props.focalArtist.name;
     return (
       <section>
-        <h1>Save Playlist?</h1>
+        <h1>Save Artistogram?</h1>
         <form>
           <fieldset>
             <label for="title">
-              Playlist Title
+              Artistogram Title
               <input
                 type="text"
                 id="title"
                 ref={input => this.textInput = input}
-                defaultValue={playlistTitle} />
+                defaultValue={artistogramTitle} />
             </label>
               <button
-                onClick={event => this.handleSavePlaylist(event)}>
-                  Save Playlist
+                onClick={event => this.handleSaveArtistogram(event)}>
+                  Save Artistogram
               </button>
           </fieldset>
         </form>
@@ -44,7 +44,6 @@ export class SavePlaylist extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   focalArtist: state.focalArtist,
-  playlist: state.playlist
 });
 
-export default connect(mapStateToProps)(SavePlaylist);
+export default connect(mapStateToProps)(SaveArtistogram);

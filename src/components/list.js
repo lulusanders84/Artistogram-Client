@@ -4,6 +4,7 @@ import './artist-icon.css';
 import './dashboard.css';
 import { userData } from './dataStore';
 import PlaylistIcon from './playlist-icon';
+import ArtistogramIcon from './artistogram-icon';
 import { addEmptyHex } from './empty-hex';
 import {connect} from 'react-redux';
 
@@ -27,10 +28,16 @@ export class List extends React.Component {
     }
     console.log("data source", dataSource);
     const listItems = dataSource.map(listItem => {
-        console.log("data source", dataSource);
+        if(dataSource === this.props.savedPlaylists) {
+          return (
+            <PlaylistIcon imageUrl={listItem.imageUrl} artistName={listItem.name} className="hexagon" linkType={this.props.linkType} />
+          )
+      } else {
         return (
-          <PlaylistIcon imageUrl={listItem.imageUrl} artistName={listItem.name} className="hexagon" linkType={this.props.linkType} />
+          <ArtistogramIcon imageUrl={listItem.imageUrl} artistName={listItem.name} className="hexagon" linkType={this.props.linkType} />
+
         )
+      }
     });
     addEmptyHex(listItems);
     const listClassName = `${this.props.listType}-list`;

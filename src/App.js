@@ -8,6 +8,7 @@ import SignUp from './components/sign-up';
 import PlaylistPage from './components/playlist-page';
 import CreateArtistogram from './components/create-artistogram';
 import SavePlaylist from './components/save-playlist';
+import SaveArtistogram from './components/save-artistogram';
 
 import './components/main.css';
 
@@ -23,6 +24,7 @@ export default function App(props) {
                     <Route exact path="/playlist/" component={PlaylistPage} />
                     <Route exact path="/create/" component={CreateArtistogram} />
                     <Route exact path="/save-playlist/" component={SavePlaylist} />
+                    <Route exact path="/save-artistogram/" component={SaveArtistogram} />
             </div>
         </Router>
     );

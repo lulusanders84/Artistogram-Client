@@ -257,3 +257,10 @@ export const addSavedPlaylist = (playlist, title, image) => ({
   title,
   image,
 })
+
+export const ADD_SAVED_ARTISTOGRAM = 'ADD_SAVED_ARTISTOGRAM';
+export const addSavedArtistogram = (title, image) => ({
+  type: ADD_SAVED_ARTISTOGRAM,
+  title,
+  image,
+})

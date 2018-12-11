@@ -110,6 +110,14 @@ export const artistogramReducer = (state=initialState, action) => {
       return Object.assign({}, state, {
         savedPlaylists: [...state.savedPlaylists, newPlaylist]
       });
+      case 'ADD_SAVED_ARTISTOGRAM':
+        const newArtistogram = {
+          name: action.title,
+          imageUrl: action.image,
+        }
+        return Object.assign({}, state, {
+          savedArtistograms: [...state.savedArtistograms, newArtistogram]
+        });
     default:
       return state;
   }
