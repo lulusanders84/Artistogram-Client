@@ -6,8 +6,41 @@ import { setLAST_FM_REQUEST_URL,
   setTracksRequestUrl,
   setTrackInfoRequestUrl } from '../api-request-urls';
 
-let artistogramArtists;
+const { API_BASE_URL } = require('../config');
 
+let artistogramArtists;
+let pass;
+export const addNewUser = (newUser) => dispatch => {
+  pass = newUser.password;
+  return fetch(`${API_BASE_URL}/users`, {
+    method: "POST",
+    headers: {
+            "Content-Type": "application/json",
+        },
+    body: JSON.stringify(newUser)
+  }).then(res => {
+    return res.json();
+  }).then(username => {
+    let user = {username, password: pass};
+    return fetch(`${API_BASE_URL}/login`, {
+      method: "POST",
+      headers: {
+              "Content-Type": "application/json",
+          },
+      body: JSON.stringify(user)
+    }).then(res => {
+      return res.json();
+    }).then(data => {
+      const authTokenStr = JSON.stringify(data.authToken);
+		  localStorage.setItem('authToken', authTokenStr);
+      dispatch(setUser(data.user));
+    })
+  })
+}
+
+export const loginUser = (user) => dispatch => {
+
+}
 export const buildArtistogramArtists = (focalArtist) => dispatch => {
   fetchSimilarArtists(focalArtist)
   .then(artists => {
@@ -227,9 +260,11 @@ export const setFocalArtistName = (artist) => ({
 });
 
 export const SET_USER = 'SET_USER';
-export const setUser = (username) => ({
+export const setUser = (user) => ({
   type: SET_USER,
-  user: username,
+  username: user.username,
+  savedPlaylists: user.savedPlaylists,
+  savedArtistograms: user.savedArtistograms,
   loggedIn: false
 })
 

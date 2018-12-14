@@ -11,7 +11,6 @@ export class SaveArtistogram extends React.Component {
   }
   handleSaveArtistogram(event) {
     event.preventDefault();
-    console.log("handlesaveArtistogram");
     const title = this.textInput.value;
     this.props.dispatch(addSavedArtistogram(title, this.props.focalArtist.imageUrl));
     this.props.history.push('/dashboard');

@@ -22,7 +22,6 @@ export class PlaylistIcon extends React.Component {
   };
   handlePlaylistSelection(artistName) {
     const selectedPlaylist = this.props.savedPlaylists.reduce((acc, savedPlaylist) => {
-      console.log(savedPlaylist);
       if(savedPlaylist.name === artistName) {
         acc = savedPlaylist;
       }
@@ -32,7 +31,6 @@ export class PlaylistIcon extends React.Component {
     this.props.dispatch(setPlaylist(selectedPlaylist.playlist));
   }
   render() {
-    console.log(this.props.artistName);
     const hexStyle = {
       backgroundImage: 'url(' + this.props.imageUrl + ')',
       backgroundSize: 'cover',

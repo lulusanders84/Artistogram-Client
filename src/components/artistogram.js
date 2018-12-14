@@ -17,7 +17,6 @@ export class Artistogram extends React.Component {
 }
   render() {
     window.scrollTo(0, 0);
-    console.log(this.props.focalArtist.name);
     const decadeSections = decades.map((decade, index) =>
         <Decade
           title={decade}
@@ -29,6 +28,7 @@ export class Artistogram extends React.Component {
       return (
         <div>
           <h1>musicians related to...{this.props.focalArtist.name}</h1>
+          <h2>click on an artist's name to see their artistogram</h2>
           <section className="artistogram">
             {decadeSections}
           </section>

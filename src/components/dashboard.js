@@ -20,7 +20,7 @@ export function Dashboard(props) {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.username
 });
 
 export default connect(mapStateToProps)(Dashboard);

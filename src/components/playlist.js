@@ -15,7 +15,6 @@ export class Playlist extends React.Component {
 
   render() {
     const songs = this.props.playlist.map((song, index) => {
-      console.log('song', song, index);
       return (
         <PlaylistItem
           name={song.trackInfo.track.name}
@@ -24,8 +23,6 @@ export class Playlist extends React.Component {
           key={uuid()} />
       )
     })
-    console.log(this.props.playlist, 'playlist from store');
-    console.log(songs);
     window.scrollTo(0, 0);
     return (
       <div>

@@ -5,7 +5,7 @@ const convert = require('xml-js');
 
 const initialState = {
   focalArtist: {name: "oasis"},
-  user: 'lucy',
+  username: 'lucy',
   loggedIn: false,
   fifties: [],
   sixties: [],
@@ -77,7 +77,9 @@ export const artistogramReducer = (state=initialState, action) => {
       });
     case 'SET_USER':
       return Object.assign({}, state, {
-        user: action.user.toLowerCase(),
+        username: action.username,
+        savedPlaylists: action.savedPlaylists,
+        savedArtistograms: action.savedArtistograms,
         loggedIn: true
       });
     case 'ADD_ARTISTOGRAM_ARTISTS':

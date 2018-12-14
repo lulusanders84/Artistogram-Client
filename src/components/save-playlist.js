@@ -11,7 +11,6 @@ export class SavePlaylist extends React.Component {
   }
   handleSavePlaylist(event) {
     event.preventDefault();
-    console.log("handlesaveplaylist");
     const title = this.textInput.value;
     this.props.dispatch(addSavedPlaylist(this.props.playlist, title, this.props.focalArtist.imageUrl));
     this.props.history.push('/dashboard');
