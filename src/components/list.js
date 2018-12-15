@@ -10,14 +10,12 @@ import {connect} from 'react-redux';
 export class List extends React.Component {
   render() {
     const listType = `${this.props.listType}s`;
-    console.log(listType, "listType");
     let dataSource;
     if(listType === 'playlists') {
         dataSource = this.props.savedPlaylists;
     } else if(listType === 'artistograms') {
         dataSource = this.props.savedArtistograms;
     }
-    console.log(dataSource, "dataSource", typeof dataSource);
     const listItems = dataSource.map(listItem => {
         if(dataSource === this.props.savedPlaylists) {
           return (
