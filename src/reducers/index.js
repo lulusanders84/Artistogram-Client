@@ -1,11 +1,10 @@
 import * as actions from '../actions';
 import { setLAST_FM_REQUEST_URL, setLAST_FM_ALBUM_REQUEST_URL } from '../api-request-urls'
 
-const convert = require('xml-js');
-
 const initialState = {
   focalArtist: {name: "oasis"},
   username: 'lucy',
+  loginData: {},
   loggedIn: false,
   fifties: [],
   sixties: [],
@@ -14,12 +13,12 @@ const initialState = {
   ninties: [],
   aughts: [],
   tens: [],
-  playlist:[{trackInfo: {track: {artist: {name: 'oasis'}, name: 'Wonderwall', duration: 120000}}}],
+  playlist:[{track: {artist: {name: 'oasis'}, name: 'Wonderwall', duration: 120000}}],
   savedPlaylists: [
     {
       name: "Oasis P",
       imageUrl: "https://i.pinimg.com/236x/d9/db/c6/d9dbc673354e24e582bd59654a5bd1ce--oasis-band-mod-hair.jpg",
-      createDate: "11/15/18"
+      playlist: [{track: {artist: {name: 'oasis'}, name: 'Wonderwall', duration: 120000}}]
     },
     {
       name: "Coldplay P",
@@ -82,6 +81,17 @@ export const artistogramReducer = (state=initialState, action) => {
         savedArtistograms: action.savedArtistograms,
         loggedIn: true
       });
+    case 'SET_LOGIN_DATA':
+      return Object.assign({}, state, {
+        loginData: {
+          username: action.username,
+          password: action.password
+        }
+      });
+    case 'CLEAR_LOGIN_DATA':
+      return Object.assign({}, state, {
+        loginData: {}
+      });
     case 'ADD_ARTISTOGRAM_ARTISTS':
       const newArtists = action.artistogramArtists;
       return Object.assign({}, state, {
@@ -103,22 +113,13 @@ export const artistogramReducer = (state=initialState, action) => {
       return Object.assign({}, state, {
         playlist: action.playlist
       });
-    case 'ADD_SAVED_PLAYLIST':
-      const newPlaylist = {
-        name: action.title,
-        imageUrl: action.image,
-        playlist: action.playlist
-      }
+    case 'SET_SAVED_PLAYLISTS':
       return Object.assign({}, state, {
-        savedPlaylists: [...state.savedPlaylists, newPlaylist]
+        savedPlaylists: action.playlists
       });
-      case 'ADD_SAVED_ARTISTOGRAM':
-        const newArtistogram = {
-          name: action.title,
-          imageUrl: action.image,
-        }
+      case 'SET_SAVED_ARTISTOGRAMS':
         return Object.assign({}, state, {
-          savedArtistograms: [...state.savedArtistograms, newArtistogram]
+          savedArtistograms: action.artistograms
         });
     default:
       return state;

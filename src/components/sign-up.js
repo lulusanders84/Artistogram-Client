@@ -14,8 +14,7 @@ export class SignUp extends React.Component {
       username: this.username.value,
       password: this.password.value,
     };
-    this.props.dispatch(addNewUser(newUser));
-    this.props.history.push(`/dashboard`);
+    this.props.dispatch(addNewUser(newUser, this.props.history));
   }
   render() {
     return (
@@ -23,25 +22,26 @@ export class SignUp extends React.Component {
         <h1>Sign Up</h1>
         <form onSubmit={event => this.handleSignUp(event)}>
           <fieldset>
+            <p>All fields required</p>
             <label for="first">
               First Name
-              <input type="text" name="first" ref={input => this.firstName = input} />
+              <input type="text" name="first" ref={input => this.firstName = input} required />
             </label>
             <label for="last">
               Last Name
-              <input type="text" name="last" ref={input => this.lastName = input} />
+              <input type="text" name="last" ref={input => this.lastName = input} required />
             </label>
             <label for="email">
               Email
-              <input type="email" name="email" ref={input => this.email = input} />
+              <input type="email" name="email" ref={input => this.email = input} required />
             </label>
             <label for="username">
               Username
-              <input type="text" name="username" ref={input => this.username = input} />
+              <input type="text" name="username" ref={input => this.username = input} required />
             </label>
             <label for="password">
               Password
-              <input type="password" name="password" ref={input => this.password = input} />
+              <input type="password" name="password" ref={input => this.password = input} required />
             </label>
             <button>Submit</button>
           </fieldset>

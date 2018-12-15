@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NavBar from './nav-bar';
 import './main.css';
 import './forms.css';
-import {setUser} from '../actions'
+import {loginUser} from '../actions'
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -10,8 +10,11 @@ export class LogIn extends React.Component {
 
   handleUser(event) {
     event.preventDefault();
-    this.props.dispatch(setUser(this.textInput.value));
-    this.props.history.push(`/dashboard`);
+    const user = {
+      username: this.username.value,
+      password: this.password.value,
+    };
+    this.props.dispatch(loginUser(user, this.props.history));
   }
   render() {
   return (
@@ -21,11 +24,11 @@ export class LogIn extends React.Component {
         <fieldset>
           <label for="username">
             Username
-            <input type="text" id="username" ref={input => this.textInput = input} />
+            <input type="text" id="username" ref={input => this.username = input} />
           </label>
           <label for="password">
             Password
-            <input type="text" id="password" />
+            <input type="password" id="password" ref={input => this.password = input} />
           </label>
           <button>Log in</button>
         </fieldset>

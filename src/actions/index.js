@@ -10,8 +10,12 @@ const { API_BASE_URL } = require('../config');
 
 let artistogramArtists;
 let pass;
-export const addNewUser = (newUser) => dispatch => {
-  pass = newUser.password;
+function setPass(password) {
+  pass = password;
+}
+
+export const addNewUser = (newUser, history) => (dispatch, getState) => {
+  dispatch(setLoginData(newUser));
   return fetch(`${API_BASE_URL}/users`, {
     method: "POST",
     headers: {
@@ -21,26 +25,100 @@ export const addNewUser = (newUser) => dispatch => {
   }).then(res => {
     return res.json();
   }).then(username => {
-    let user = {username, password: pass};
-    return fetch(`${API_BASE_URL}/login`, {
-      method: "POST",
-      headers: {
-              "Content-Type": "application/json",
-          },
-      body: JSON.stringify(user)
-    }).then(res => {
-      return res.json();
-    }).then(data => {
-      const authTokenStr = JSON.stringify(data.authToken);
-		  localStorage.setItem('authToken', authTokenStr);
-      dispatch(setUser(data.user));
-    })
+    const password = getState().loginData.password;
+    let user = {username, password,};
+    dispatch(loginUser(user, history));
+  }).then(() => {
+    dispatch(clearLoginData());
   })
 }
 
-export const loginUser = (user) => dispatch => {
-
+function fetchUserData(user) {
+  return fetch(`${API_BASE_URL}/login`, {
+    method: "POST",
+    headers: {
+            "Content-Type": "application/json",
+        },
+    body: JSON.stringify(user)
+  })
 }
+
+export const loginUser = (user, history) => dispatch => {
+  return fetchUserData(user)
+  .then(res => {
+     if (!res.ok) {
+         return Promise.reject(res.statusText);
+     }
+     return res.json();
+ }).then(data => {
+   saveAuthToken(data.authToken);
+   dispatch(setUser(data.user));
+   history.push(`/dashboard`);
+ })
+}
+
+function saveAuthToken(authToken){
+  const authTokenStr = JSON.stringify(authToken);
+  localStorage.setItem('authToken', authTokenStr);
+}
+
+function getAuthToken() {
+	return JSON.parse(localStorage.getItem('authToken'));
+}
+
+export const putSavedPlaylist = (playlistData, history) => dispatch => {
+  const { username, playlist, name, imageUrl } = playlistData;
+  const data = {
+    name,
+    imageUrl,
+    playlist,
+  };
+  return fetch(`${API_BASE_URL}/playlists/${username}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${getAuthToken()}`
+    },
+    body: JSON.stringify(data)
+  }).then(res => {
+     if (!res.ok) {
+         return Promise.reject(res.statusText);
+     }
+     return res.json();
+ }).then(res => {
+   console.log(res);
+   dispatch(setSavedPlaylists(res.playlists));
+ }).then(() => {
+       history.push('/dashboard');
+ })
+}
+
+export const putSavedArtistogram = (artistogramData, history) => dispatch => {
+  const { username, name, imageUrl } = artistogramData;
+  const data = {
+    name,
+    imageUrl,
+  };
+return fetch(`${API_BASE_URL}/artistograms/${username}`, {
+  method: "PUT",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${getAuthToken()}`
+  },
+  body: JSON.stringify(data)
+}).then(res => {
+   if (!res.ok) {
+       return Promise.reject(res.statusText);
+   }
+   return res.json();
+}).then(res => {
+ console.log(res);
+ dispatch(setSavedArtistograms(res.artistograms));
+}).then(() => {
+     history.push('/dashboard');
+})
+}
+
 export const buildArtistogramArtists = (focalArtist) => dispatch => {
   fetchSimilarArtists(focalArtist)
   .then(artists => {
@@ -193,7 +271,9 @@ export const buildArtistogramPlaylist = (artists) => dispatch => {
       .then(trackInfo => {
         if(trackInfo.message !== 'Track not found') {
           acc.push({
-            trackInfo
+            artist: trackInfo.track.artist.name,
+            name: trackInfo.track.name,
+            duration: trackInfo.track.duration
           })
         }
       })
@@ -268,6 +348,18 @@ export const setUser = (user) => ({
   loggedIn: false
 })
 
+export const SET_LOGIN_DATA = 'SET_LOGIN_DATA';
+export const setLoginData = (user) => ({
+  type: SET_LOGIN_DATA,
+  username: user.username,
+  password: user.password
+})
+
+export const CLEAR_LOGIN_DATA = 'CLEAR_LOGIN_DATA';
+export const clearLoginData = () => ({
+  type: CLEAR_LOGIN_DATA
+})
+
 export const ADD_ARTISTOGRAM_ARTISTS = 'ADD_ARTISTOGRAM_ARTISTS';
 export const addArtistogramArtists = (artistogramArtists) => ({
   type: ADD_ARTISTOGRAM_ARTISTS,
@@ -285,17 +377,14 @@ export const setPlaylist = (playlist) => ({
   playlist,
 })
 
-export const ADD_SAVED_PLAYLIST = 'ADD_SAVED_PLAYLIST';
-export const addSavedPlaylist = (playlist, title, image) => ({
-  type: ADD_SAVED_PLAYLIST,
-  playlist,
-  title,
-  image,
+export const SET_SAVED_PLAYLISTS = 'SET_SAVED_PLAYLISTS';
+export const setSavedPlaylists = (playlists) => ({
+  type: SET_SAVED_PLAYLISTS,
+  playlists,
 })
 
-export const ADD_SAVED_ARTISTOGRAM = 'ADD_SAVED_ARTISTOGRAM';
-export const addSavedArtistogram = (title, image) => ({
-  type: ADD_SAVED_ARTISTOGRAM,
-  title,
-  image,
+export const SET_SAVED_ARTISTOGRAMS = 'SET_SAVED_ARTISTOGRAMS';
+export const setSavedArtistograms = (artistograms) => ({
+  type: SET_SAVED_ARTISTOGRAMS,
+  artistograms,
 })

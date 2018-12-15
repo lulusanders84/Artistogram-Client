@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './main.css';
 import './forms.css';
-import {addSavedArtistogram} from '../actions';
+import {putSavedArtistogram} from '../actions';
 import { connect } from 'react-redux';
 
 export class SaveArtistogram extends React.Component {
@@ -11,9 +11,13 @@ export class SaveArtistogram extends React.Component {
   }
   handleSaveArtistogram(event) {
     event.preventDefault();
-    const title = this.textInput.value;
-    this.props.dispatch(addSavedArtistogram(title, this.props.focalArtist.imageUrl));
-    this.props.history.push('/dashboard');
+    const name = this.textInput.value;
+    const artistogramData = {
+      username: this.props.username,
+      name,
+      imageUrl: this.props.focalArtist.imageUrl
+    };
+    this.props.dispatch(putSavedArtistogram(artistogramData, this.props.history));
   }
   render() {
     const artistogramTitle = this.props.focalArtist.name;
@@ -43,6 +47,7 @@ export class SaveArtistogram extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   focalArtist: state.focalArtist,
+  username: state.username
 });
 
 export default connect(mapStateToProps)(SaveArtistogram);

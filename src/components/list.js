@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './main.css';
 import './artist-icon.css';
 import './dashboard.css';
-import { userData } from './dataStore';
 import PlaylistIcon from './playlist-icon';
 import ArtistogramIcon from './artistogram-icon';
 import { addEmptyHex } from './empty-hex';
@@ -10,23 +9,15 @@ import {connect} from 'react-redux';
 
 export class List extends React.Component {
   render() {
-    console.log("saved playlists: ", this.props.savedPlaylists);
-    console.log("saved artistograms: ", this.props.savedArtistograms);
-    const user = userData.reduce((acc, user) => {
-      if(user.username === this.props.user) {
-        acc = user;
-      }
-      return acc;
-    }, {});
     const listType = `${this.props.listType}s`;
+    console.log(listType, "listType");
     let dataSource;
-    console.log("listtype", listType);
     if(listType === 'playlists') {
         dataSource = this.props.savedPlaylists;
-    } else if(listType == 'artistograms') {
+    } else if(listType === 'artistograms') {
         dataSource = this.props.savedArtistograms;
     }
-    console.log("data source", dataSource);
+    console.log(dataSource, "dataSource", typeof dataSource);
     const listItems = dataSource.map(listItem => {
         if(dataSource === this.props.savedPlaylists) {
           return (
@@ -53,7 +44,6 @@ export class List extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  user: state.user,
   savedPlaylists: state.savedPlaylists,
   savedArtistograms: state.savedArtistograms
 });

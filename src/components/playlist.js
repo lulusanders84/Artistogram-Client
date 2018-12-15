@@ -17,9 +17,9 @@ export class Playlist extends React.Component {
     const songs = this.props.playlist.map((song, index) => {
       return (
         <PlaylistItem
-          name={song.trackInfo.track.name}
-          artist={song.trackInfo.track.artist.name}
-          duration={song.trackInfo.track.duration}
+          name={song.name}
+          artist={song.artist}
+          duration={song.duration}
           key={uuid()} />
       )
     })

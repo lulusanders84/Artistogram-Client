@@ -3,7 +3,7 @@ import './main.css';
 import './dashboard.css';
 import List from './list';
 import NavBar from './nav-bar';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 
 export function Dashboard(props) {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './main.css';
 import './forms.css';
-import {addSavedPlaylist} from '../actions';
+import {putSavedPlaylist} from '../actions';
 import { connect } from 'react-redux';
 
 export class SavePlaylist extends React.Component {
@@ -11,9 +11,14 @@ export class SavePlaylist extends React.Component {
   }
   handleSavePlaylist(event) {
     event.preventDefault();
-    const title = this.textInput.value;
-    this.props.dispatch(addSavedPlaylist(this.props.playlist, title, this.props.focalArtist.imageUrl));
-    this.props.history.push('/dashboard');
+    const name = this.textInput.value;
+    const playlistData = {
+      username: this.props.username,
+      playlist: this.props.playlist,
+      name,
+      imageUrl: this.props.focalArtist.imageUrl
+    };
+    this.props.dispatch(putSavedPlaylist(playlistData, this.props.history));
   }
   render() {
     const playlistTitle = this.props.focalArtist.name;
@@ -43,7 +48,8 @@ export class SavePlaylist extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   focalArtist: state.focalArtist,
-  playlist: state.playlist
+  playlist: state.playlist,
+  username: state.username
 });
 
 export default connect(mapStateToProps)(SavePlaylist);
