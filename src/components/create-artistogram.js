@@ -21,10 +21,10 @@ export class CreateArtistogram extends React.Component {
       <div id="create">
         <form onSubmit={event => this.handleSetFocalArtist(event)}>
           <fieldset>
-            <legend>Enter your favourite musician or band to create an Artistogram</legend>
+            <legend>Enter your favourite musician or band</legend>
             <div>
               <input type="text" ref={input => this.textInput = input}/>
-              <input type="submit" />
+              <input type="submit" value="Create Artistogram" />
             </div>
           </fieldset>
         </form>

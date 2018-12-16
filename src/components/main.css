@@ -7,14 +7,15 @@ html {
 }
 
 body {
-  padding-top: 80px;
+  padding-top: 8vh;
 }
 
 button {
   cursor: pointer;
 }
-body, button {
+body, button, input[type=submit] {
   font-family: 'Open Sans', sans-serif;
+  font-size: 2vh;
 }
 
 nav {
@@ -25,24 +26,24 @@ nav {
   display: flex;
   justify-content: space-between;
   align-content: center;
-  min-height: 80px;
+  max-height: 8vh;
   background-color: white;
   color: #0d0d26;
   font-weight: 800;
 }
 
 .logo {
-  width: 50px;
-  height: 50px;
+  width: 6vh;
+  height: 6vh;
   display: flex;
   justify-content: center;
   align-content: center;
-  margin: 15px;
+  margin: 1vh;
 }
 
 .logo img, .logo a {
-  width: 50px;
-  height: 50px;
+  width: 6vh;
+  height: 6vh;
 }
 
 .nav-title {
@@ -64,7 +65,7 @@ nav ul {
 nav li {
   margin: auto 0;
   float: left;
-  padding-right: 10px;
+  padding-right: 2vw;
   text-align: center;
 }
 
@@ -72,6 +73,7 @@ nav li {
   text-decoration: none;
   color: #0d0d26;
   font-weight: 800;
+  font-size: 2vh;
 }
 
 h1, h2, h3 {
@@ -80,13 +82,14 @@ h1, h2, h3 {
 }
 
 h1 {
-  margin: 15px 0;
+  margin: 1.5vh 0;
   text-align: left;
-  font-size: 2rem;
+  font-size: 4vh;
 }
 
 
 h2 {
+  font-size: 3vh;
   font-weight: 575;
   letter-spacing: 0.1em;
   margin: 0 auto;
@@ -115,16 +118,16 @@ h3 {
     /* bottom, image */
     url('../artistogramImage.png');
   background-position: center;
-  min-height: 80vh;
+
 }
 
 .intro-container button {
   display: block;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 5vh;
   text-align: center;
-  padding: 15px 0;
-  font-size: 16px;
+  padding: 1.5vh 0;
+  font-size: 2vh;
 
 }
 
@@ -209,10 +212,7 @@ ul.artistogram-list, ul.playlist-list {
   margin: 0 auto;
 }
 
-#register {
-  text-align: center;
-}
+@media only screen and (max-width: 640px) {
 
-#register a {
-  color: white;
+
 }

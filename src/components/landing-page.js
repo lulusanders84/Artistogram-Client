@@ -12,17 +12,15 @@ export default function LandingPage(props) {
   return (
     <div>
       <header>
-        <NavBar links={navBarLinks} title="Welcome to Artistogram"/>
+        <NavBar links={navBarLinks} title="Artistogram"/>
       </header>
       <main>
         <section className="intro-bg" role="region">
           <div className="intro-container">
             <div className="intro-text">
               <h2>What is an Artistogram?</h2>
-              <p>An artistogram is a graphical representation of musicians related to an artist sorted by decade.
-                Pronounced [Ah-<em>tist</em>-a-gram], it is a combination of the words artist and histogram.
-                It is an awesome way to discover artists similar to your favourites and create playlists comprised
-                of those artists.
+              <p>An artistogram is a display of musicians related to an artist sorted by decade.
+                It is an awesome way to discover artists similar to your favourites and create playlists.
               </p>
               <CreateArtistogram />
             </div>

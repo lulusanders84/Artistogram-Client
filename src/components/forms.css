@@ -1,12 +1,11 @@
 form {
 
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 3vh;
   max-width: 50%;
   display: flex;
   justify-content: center;
   align-content: center;
-  border: 1px solid white;
 }
 
 fieldset {
@@ -31,13 +30,14 @@ input {
     padding: 8px 10px;
 }
 
-button {
+button, input[type=submit] {
+  vertical-align: center;
   border: 1px solid lightgray;
   border-radius: 5px;
   margin: 8px 10px;
   min-width: 50%;
   padding: inherit;
-  padding-bottom: 10px;
+  padding: 8px 10px;
   font-weight: 700;
 }
 
@@ -47,4 +47,10 @@ button {
 
 .register a {
   color: white;
+}
+
+@media only screen and (max-width: 640px) {
+  form {
+    border: none;
+  }
 }
