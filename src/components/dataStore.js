@@ -20,7 +20,7 @@ export const navBarLinksData = [
   },
   {
     link: "create new artistogram",
-    url: ""
+    url: "create-artistogram"
   },
   {
     link: "save artistogram",

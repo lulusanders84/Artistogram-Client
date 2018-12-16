@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import LandingPage from './components/landing-page';
+import CreateArtistogramPage from './components/create-artistogram-page';
 import ArtistogramPage from './components/artistogram-page';
 import Dashboard from './components/dashboard';
 import LogIn from './components/log-in';
@@ -17,6 +18,7 @@ export default function App(props) {
         <Router>
             <div className="app">
                     <Route exact path="/" component={LandingPage} />
+                    <Route exact path="/create-artistogram/" component={CreateArtistogramPage} />
                     <Route exact path="/artistogram/" component={ArtistogramPage} />
                     <Route exact path="/dashboard/" component={Dashboard} />
                     <Route exact path="/login/" component={LogIn} />

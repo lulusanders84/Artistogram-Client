@@ -19,7 +19,6 @@ export class CreateArtistogram extends React.Component {
     return (
 
       <div id="create">
-        <h1>Artistogram</h1>
         <form onSubmit={event => this.handleSetFocalArtist(event)}>
           <fieldset>
             <legend>Enter your favourite musician or band to create an Artistogram</legend>

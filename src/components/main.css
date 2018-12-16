@@ -5,6 +5,14 @@ html {
   background-color: #0d0d26;
   color: white;
 }
+
+body {
+  padding-top: 80px;
+}
+
+button {
+  cursor: pointer;
+}
 body, button {
   font-family: 'Open Sans', sans-serif;
 }
@@ -15,13 +23,30 @@ nav {
   top: 0;
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-content: center;
-  min-height: 60px;
+  min-height: 80px;
   background-color: white;
   color: #0d0d26;
   font-weight: 800;
+}
 
+.logo {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 15px;
+}
+
+.logo img, .logo a {
+  width: 50px;
+  height: 50px;
+}
+
+.nav-title {
+  color: #0d0d26;
 }
 
 ul {
@@ -31,12 +56,16 @@ ul {
 }
 
 nav ul {
+  display: flex;
+  justify-content: center;
   margin-right: 0;
   margin-left: auto;
 }
 nav li {
+  margin: auto 0;
   float: left;
   padding-right: 10px;
+  text-align: center;
 }
 
 .nav-bar-link {
@@ -45,19 +74,74 @@ nav li {
   font-weight: 800;
 }
 
-h1 {
-  margin-top: 70px;
-  font-size: 2rem;
-}
 h1, h2, h3 {
   font-family: 'PT Sans Narrow', sans-serif;
   text-align: center;
 }
 
+h1 {
+  margin: 15px 0;
+  text-align: left;
+  font-size: 2rem;
+}
+
+
 h2 {
+  font-weight: 575;
+  letter-spacing: 0.1em;
   margin: 0 auto;
   text-align: center;
+
+}
+
+h3 {
+  font-weight: 550;
+  letter-spacing: 0.08em;
+  text-align: left;
   width: 90%;
+}
+
+.intro-bg {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 20px;
+  background:
+  linear-gradient(
+    rgba(13, 13, 38, 1) 35%,
+    65%,
+    rgba(13, 13, 38, 0) 85%
+    ),
+    /* bottom, image */
+    url('../artistogramImage.png');
+  background-position: center;
+  min-height: 80vh;
+}
+
+.intro-container button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 50px;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 16px;
+
+}
+
+.intro-text {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.intro-container {
+  background:
+    linear-gradient(
+      rgba(13, 13, 38, 1) 35%,
+      65%,
+      rgba(13, 13, 38, 0) 85%
+    );
+  width: 100%;
+  min-height: 80vh;
 }
 
 .title-container {
@@ -117,4 +201,18 @@ ul.artistogram-list, ul.playlist-list {
   float: left;
   width: 100px;
   height: 100px;
+}
+
+.empty-list {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+#register {
+  text-align: center;
+}
+
+#register a {
+  color: white;
 }

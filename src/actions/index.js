@@ -9,10 +9,6 @@ import { setLAST_FM_REQUEST_URL,
 const { API_BASE_URL } = require('../config');
 
 let artistogramArtists;
-let pass;
-function setPass(password) {
-  pass = password;
-}
 
 export const addNewUser = (newUser, history) => (dispatch, getState) => {
   dispatch(setLoginData(newUser));
@@ -86,7 +82,6 @@ export const putSavedPlaylist = (playlistData, history) => dispatch => {
      }
      return res.json();
  }).then(res => {
-   console.log(res);
    dispatch(setSavedPlaylists(res.playlists));
  }).then(() => {
        history.push('/dashboard');
@@ -112,7 +107,6 @@ return fetch(`${API_BASE_URL}/artistograms/${username}`, {
    }
    return res.json();
 }).then(res => {
- console.log(res);
  dispatch(setSavedArtistograms(res.artistograms));
 }).then(() => {
      history.push('/dashboard');

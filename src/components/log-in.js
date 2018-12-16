@@ -4,7 +4,7 @@ import './main.css';
 import './forms.css';
 import {loginUser} from '../actions'
 import {connect} from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 export class LogIn extends React.Component {
 
@@ -19,7 +19,7 @@ export class LogIn extends React.Component {
   render() {
   return (
     <section>
-      <h1>Log In</h1>
+      <NavBar links={[]} page={true} title="Log In" />
       <form onSubmit={event => this.handleUser(event)}>
         <fieldset>
           <label for="username">
@@ -33,6 +33,7 @@ export class LogIn extends React.Component {
           <button>Log in</button>
         </fieldset>
       </form>
+      <p className="register">Not registered? Click <Link to='/signup'>here</Link> to sign up</p>
     </section>
   )
 }
