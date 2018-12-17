@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './main.css';
+import './dropdown.css';
 import { Link } from 'react-router-dom';
 import { navBarLinksData } from './dataStore';
 import LoggedIn from './logged-in';
@@ -17,7 +18,7 @@ export default class NavBar extends React.Component {
         this.props.links.forEach(link => {
           let linkComponent = <Link to={data.url}  className="nav-bar-link">{link}</Link>;
           if(link == data.link) {
-            acc.push(<li key={uuid()}>{linkComponent}</li>);
+            acc.push(<Link to={data.url} className="nav-bar-link"><li key={uuid()}>{link}</li></Link>);
           }
         })
         return acc;
@@ -29,14 +30,28 @@ export default class NavBar extends React.Component {
         return <LoggedIn key={uuid()} store={store}/>;
       }
     }
+    function buttonStyle() {
+      if(navBarLinks.length === 0) {
+        return {
+          display: 'none'
+        };
+      }
+    }
     return (
       <nav>
         <div className="logo"><Link to='/dashboard'><img src={logo} alt="Click for dashboard"/></Link></div>
         <h1 className="nav-title">{this.props.title}</h1>
-        <ul>
+        <ul class="menu">
           {loggedIn(this.props.page)}
           {navBarLinks}
         </ul>
+        <div class="dropdown">
+          <button class="dropbtn" style={buttonStyle()}>Menu</button>
+          <ul class="dropdown-content">
+            {loggedIn(this.props.page)}
+            {navBarLinks}
+          </ul>
+        </div>
 
       </nav>
     )

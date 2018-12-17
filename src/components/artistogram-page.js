@@ -16,7 +16,7 @@ export class ArtistogramPage extends React.Component {
   }
   render() {
     const links = ["sign up", "create new artistogram", "view playlist", "save artistogram"];
-    const pageTitle = `Artistogram of ${this.props.focalArtist.name}`;
+    const pageTitle = `${this.props.focalArtist.name}`;
     return (
       <div>
         <header>

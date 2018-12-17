@@ -12,7 +12,7 @@ export class LoggedIn extends React.Component {
     const inOrOut = this.props.loggedIn ? "out":"in";
     const url = this.props.loggedIn ? "/":"/login";
     return (
-      <li><Link to={url}  className="nav-bar-link">log{inOrOut}</Link></li>
+      <Link to={url} className="nav-bar-link"><li>log{inOrOut}</li></Link>
     )
   }
 }

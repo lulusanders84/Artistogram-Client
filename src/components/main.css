@@ -24,7 +24,7 @@ nav {
   top: 0;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-content: center;
   max-height: 8vh;
   background-color: white;
@@ -33,6 +33,7 @@ nav {
 }
 
 .logo {
+  float: left;
   width: 6vh;
   height: 6vh;
   display: flex;
@@ -62,7 +63,7 @@ nav ul {
   margin-right: 0;
   margin-left: auto;
 }
-nav li {
+.menu li {
   margin: auto 0;
   float: left;
   padding-right: 2vw;
@@ -70,6 +71,7 @@ nav li {
 }
 
 .nav-bar-link {
+  width: 100%;
   text-decoration: none;
   color: #0d0d26;
   font-weight: 800;
@@ -148,6 +150,7 @@ h3 {
 }
 
 .title-container {
+  margin-left: 2vw;
   text-align: left;
 }
 

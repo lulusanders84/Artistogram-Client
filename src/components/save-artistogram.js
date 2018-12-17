@@ -5,6 +5,7 @@ import './forms.css';
 import {putSavedArtistogram, saveDestination} from '../actions';
 import { connect } from 'react-redux';
 import LogIn from './log-in';
+import NavBar from './nav-bar';
 
 export class SaveArtistogram extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export class SaveArtistogram extends React.Component {
       const artistogramTitle = this.props.focalArtist.name;
       return (
         <section>
-          <h1>Save Artistogram?</h1>
+          <NavBar links={[]} title="" />
           <form>
             <fieldset>
               <label for="title">

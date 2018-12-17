@@ -1,7 +1,7 @@
 #grid {
     position: relative;
-    width: 100%;
-    margin: 0 auto;
+    width: 110%;
+    margin: 0 -27px;
     padding: 0;
     padding-bottom: 4.25%;
 }
@@ -85,4 +85,11 @@
 
 #grid li:nth-child(8n+5) {
     margin-left: 0.5%;
+}
+
+@media only screen and (min-width: 800px) {
+  #grid {
+    width: 80%;
+    margin: 0 auto;
+  }
 }

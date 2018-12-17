@@ -5,6 +5,7 @@ import './forms.css';
 import {putSavedPlaylist, saveDestination} from '../actions';
 import { connect } from 'react-redux';
 import LogIn from './log-in';
+import NavBar from './nav-bar';
 
 export class SavePlaylist extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ export class SavePlaylist extends React.Component {
       const playlistTitle = this.props.focalArtist.name;
       return (
         <section>
-          <h1>Save Playlist?</h1>
+          <NavBar links={[]} title='' />
           <form>
             <fieldset>
               <label for="title">
