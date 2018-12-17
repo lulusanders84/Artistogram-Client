@@ -26,8 +26,6 @@ export class Playlist extends React.Component {
     window.scrollTo(0, 0);
     return (
       <div>
-        <h1>{this.props.focalArtist.name} artistogram playlist</h1>
-        <button className="export">Export to Spotify</button>
         <ul className="playlist-list">
           <li>
             <div className="song">Title</div>

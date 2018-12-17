@@ -19,7 +19,7 @@ export default function LandingPage(props) {
           <div className="intro-container">
             <div className="intro-text">
               <h2>What is an Artistogram?</h2>
-              <p>An artistogram is a display of musicians related to an artist sorted by decade.
+              <p>An artistogram is a chronological display of musicians related to an artist.
                 It is an awesome way to discover artists similar to your favourites and create playlists. Anyone can
                 create and view an artistogram, sign up or login to save artistograms and playlists for later.
               </p>
