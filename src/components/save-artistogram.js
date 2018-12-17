@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './main.css';
 import './forms.css';
-import {putSavedArtistogram} from '../actions';
+import {putSavedArtistogram, saveDestination} from '../actions';
 import { connect } from 'react-redux';
+import LogIn from './log-in';
 
 export class SaveArtistogram extends React.Component {
   constructor(props) {
@@ -19,35 +20,43 @@ export class SaveArtistogram extends React.Component {
     };
     this.props.dispatch(putSavedArtistogram(artistogramData, this.props.history));
   }
+  componentDidMount() {
+    this.props.dispatch(saveDestination('/save-artistogram'));
+  }
   render() {
-    const artistogramTitle = this.props.focalArtist.name;
-    return (
-      <section>
-        <h1>Save Artistogram?</h1>
-        <form>
-          <fieldset>
-            <label for="title">
-              Artistogram Title
-              <input
-                type="text"
-                id="title"
-                ref={input => this.textInput = input}
-                defaultValue={artistogramTitle} />
-            </label>
-              <button
-                onClick={event => this.handleSaveArtistogram(event)}>
-                  Save Artistogram
-              </button>
-          </fieldset>
-        </form>
-      </section>
-    )
+    if(this.props.loggedIn) {
+      const artistogramTitle = this.props.focalArtist.name;
+      return (
+        <section>
+          <h1>Save Artistogram?</h1>
+          <form>
+            <fieldset>
+              <label for="title">
+                Artistogram Title
+                <input
+                  type="text"
+                  id="title"
+                  ref={input => this.textInput = input}
+                  defaultValue={artistogramTitle} />
+              </label>
+                <button
+                  onClick={event => this.handleSaveArtistogram(event)}>
+                    Save Artistogram
+                </button>
+            </fieldset>
+          </form>
+        </section>
+      )
+    } else {
+      return <LogIn />
+    }
   }
 }
 
 const mapStateToProps = (state, props) => ({
   focalArtist: state.focalArtist,
-  username: state.username
+  username: state.username,
+  loggedIn: state.loggedIn
 });
 
 export default connect(mapStateToProps)(SaveArtistogram);

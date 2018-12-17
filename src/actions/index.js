@@ -39,7 +39,7 @@ function fetchUserData(user) {
   })
 }
 
-export const loginUser = (user, history) => dispatch => {
+export const loginUser = (user, history) => (dispatch, getState) => {
   return fetchUserData(user)
   .then(res => {
      if (!res.ok) {
@@ -49,7 +49,8 @@ export const loginUser = (user, history) => dispatch => {
  }).then(data => {
    saveAuthToken(data.authToken);
    dispatch(setUser(data.user));
-   history.push(`/dashboard`);
+   console.log(getState().destination)
+   history.push(getState().destination);
  })
 }
 
@@ -62,7 +63,7 @@ function getAuthToken() {
 	return JSON.parse(localStorage.getItem('authToken'));
 }
 
-export const putSavedPlaylist = (playlistData, history) => dispatch => {
+export const putSavedPlaylist = (playlistData, history) => (dispatch, getState) => {
   const { username, playlist, name, imageUrl } = playlistData;
   const data = {
     name,
@@ -88,7 +89,7 @@ export const putSavedPlaylist = (playlistData, history) => dispatch => {
  })
 }
 
-export const putSavedArtistogram = (artistogramData, history) => dispatch => {
+export const putSavedArtistogram = (artistogramData, history) => (dispatch, getState) => {
   const { username, name, imageUrl } = artistogramData;
   const data = {
     name,
@@ -381,4 +382,10 @@ export const SET_SAVED_ARTISTOGRAMS = 'SET_SAVED_ARTISTOGRAMS';
 export const setSavedArtistograms = (artistograms) => ({
   type: SET_SAVED_ARTISTOGRAMS,
   artistograms,
+})
+
+export const SAVE_DESTINATION = 'SAVE_DESTINATION';
+export const saveDestination = (destination) => ({
+  type: SAVE_DESTINATION,
+  destination,
 })

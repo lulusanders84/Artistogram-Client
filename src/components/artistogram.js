@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './main.css';
 import './hex-grid.css';
 import Decade from './decade';
-import { buildArtistogramArtists, fetchAndSetFocalArtistInfo } from '../actions';
+import { buildArtistogramArtists, fetchAndSetFocalArtistInfo, saveDestination } from '../actions';
 import { decades, decadeWords, res } from './dataStore';
 import {connect} from 'react-redux';
 import uuid from 'uuid/v4';

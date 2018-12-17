@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './main.css';
 import './forms.css';
-import {putSavedPlaylist} from '../actions';
+import {putSavedPlaylist, saveDestination} from '../actions';
 import { connect } from 'react-redux';
+import LogIn from './log-in';
 
 export class SavePlaylist extends React.Component {
   constructor(props) {
     super(props);
+  }
+  componentDidMount() {
+    this.props.dispatch(saveDestination('/save-playlist'));
   }
   handleSavePlaylist(event) {
     event.preventDefault();
@@ -21,35 +25,40 @@ export class SavePlaylist extends React.Component {
     this.props.dispatch(putSavedPlaylist(playlistData, this.props.history));
   }
   render() {
-    const playlistTitle = this.props.focalArtist.name;
-    return (
-      <section>
-        <h1>Save Playlist?</h1>
-        <form>
-          <fieldset>
-            <label for="title">
-              Playlist Title
-              <input
-                type="text"
-                id="title"
-                ref={input => this.textInput = input}
-                defaultValue={playlistTitle} />
-            </label>
-              <button
-                onClick={event => this.handleSavePlaylist(event)}>
-                  Save Playlist
-              </button>
-          </fieldset>
-        </form>
-      </section>
-    )
+    if(this.props.loggedIn) {
+      const playlistTitle = this.props.focalArtist.name;
+      return (
+        <section>
+          <h1>Save Playlist?</h1>
+          <form>
+            <fieldset>
+              <label for="title">
+                Playlist Title
+                <input
+                  type="text"
+                  id="title"
+                  ref={input => this.textInput = input}
+                  defaultValue={playlistTitle} />
+              </label>
+                <button
+                  onClick={event => this.handleSavePlaylist(event)}>
+                    Save Playlist
+                </button>
+            </fieldset>
+          </form>
+        </section>
+      )
+    } else {
+      return <LogIn />
+    }
   }
 }
 
 const mapStateToProps = (state, props) => ({
   focalArtist: state.focalArtist,
   playlist: state.playlist,
-  username: state.username
+  username: state.username,
+  loggedIn: state.loggedIn
 });
 
 export default connect(mapStateToProps)(SavePlaylist);

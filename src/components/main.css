@@ -15,7 +15,7 @@ button {
 }
 body, button, input[type=submit] {
   font-family: 'Open Sans', sans-serif;
-  font-size: 2vh;
+  font-size: 2.25vh;
 }
 
 nav {

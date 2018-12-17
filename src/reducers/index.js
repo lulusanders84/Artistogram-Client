@@ -15,7 +15,8 @@ const initialState = {
   tens: [],
   playlist:[],
   savedPlaylists: [],
-  savedArtistograms: []
+  savedArtistograms: [],
+  destination: '/dashboard'
 }
 export const artistogramReducer = (state=initialState, action) => {
   switch(action.type) {
@@ -74,10 +75,14 @@ export const artistogramReducer = (state=initialState, action) => {
       return Object.assign({}, state, {
         savedPlaylists: action.playlists
       });
-      case 'SET_SAVED_ARTISTOGRAMS':
-        return Object.assign({}, state, {
-          savedArtistograms: action.artistograms
-        });
+    case 'SET_SAVED_ARTISTOGRAMS':
+      return Object.assign({}, state, {
+        savedArtistograms: action.artistograms
+      });
+    case 'SAVE_DESTINATION':
+    return Object.assign({}, state, {
+      destination: action.destination
+    });
     default:
       return state;
   }
