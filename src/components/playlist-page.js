@@ -15,7 +15,7 @@ export class PlaylistPage extends React.Component {
   }
   render() {
     const navBarLinks = ["sign up", "dashboard", "save playlist", "create new artistogram"];
-    const pageTitle = `${this.props.focalArtist.name} playlist`;
+    const pageTitle = `${this.props.focalArtist.name} Playlist`;
     return (
       <div>
         <NavBar links={navBarLinks} title={pageTitle} />

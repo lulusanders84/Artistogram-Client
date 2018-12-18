@@ -20,10 +20,17 @@ export const addNewUser = (newUser, history) => (dispatch, getState) => {
     body: JSON.stringify(newUser)
   }).then(res => {
     return res.json();
-  }).then(username => {
-    const password = getState().loginData.password;
-    let user = {username, password,};
-    dispatch(loginUser(user, history));
+  }).then(res => {
+    let error;
+    if(res.location !== undefined) {
+      error = res.location + " " + res.message;
+      dispatch(setErrorMsg(error));
+    } else {
+      const username = res;
+      const password = getState().loginData.password;
+      let user = {username, password,};
+      dispatch(loginUser(user, history));
+    }
   }).then(() => {
     dispatch(clearLoginData());
   })
@@ -47,9 +54,9 @@ export const loginUser = (user, history) => (dispatch, getState) => {
      }
      return res.json();
  }).then(data => {
+   const error = data.location + " " + data.message;
    saveAuthToken(data.authToken);
    dispatch(setUser(data.user));
-   console.log(getState().destination)
    history.push(getState().destination);
  })
 }
@@ -370,6 +377,12 @@ export const SET_PLAYLIST = 'SET_PLAYLIST';
 export const setPlaylist = (playlist) => ({
   type: SET_PLAYLIST,
   playlist,
+})
+
+export const SET_ERROR_MSG = 'SET_ERROR_MSG';
+export const setErrorMsg = (message) => ({
+  type: SET_ERROR_MSG,
+  message,
 })
 
 export const SET_SAVED_PLAYLISTS = 'SET_SAVED_PLAYLISTS';

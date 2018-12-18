@@ -34,6 +34,7 @@
 
 /* Links inside the dropdown */
 .dropdown-content li {
+  padding: 2vw;
   display: block;
   width: 100%;
   color: #0d0d26;

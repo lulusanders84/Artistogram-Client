@@ -19,12 +19,14 @@ export class SignUp extends React.Component {
     this.props.dispatch(addNewUser(newUser, this.props.history));
   }
   render() {
+    console.log(this.props.errorMsg);
     return (
       <div>
       <header>
         <NavBar links={[]} page={true} title="Sign Up" />
       </header>
         <main>
+          <p className="error">{this.props.errorMsg}</p>
           <form onSubmit={event => this.handleSignUp(event)}>
             <fieldset>
               <p>All fields required</p>
@@ -58,8 +60,8 @@ export class SignUp extends React.Component {
   }
 }
 
-// const mapStateToProps = (state, props) => ({
-//   focalArtist: state.focalArtist,
-// });
+const mapStateToProps = (state, props) => ({
+  errorMsg: state.errorMsg
+});
 
-export default connect()(SignUp);
+export default connect(mapStateToProps)(SignUp);

@@ -1,7 +1,7 @@
 #grid {
     position: relative;
     width: 110%;
-    margin: 0 -27px;
+    margin: 0 -7vw;
     padding: 0;
     padding-bottom: 4.25%;
 }
@@ -87,9 +87,9 @@
     margin-left: 0.5%;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 1200px) {
   #grid {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
   }
 }

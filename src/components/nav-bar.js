@@ -7,10 +7,16 @@ import LoggedIn from './logged-in';
 import uuid from 'uuid/v4';
 import store from '../store.js';
 import logo from '../aLogo.png';
+import { saveDestination } from '../actions';
+import { connect } from 'react-redux';
 
-export default class NavBar extends React.Component {
+export class NavBar extends React.Component {
   constructor(props) {
     super(props);
+  }
+  handleSaveDestination(event) {
+    event.preventDefault();
+    this.props.dispatch(saveDestination('/dashboard'));
   }
   render() {
     const navBarLinks =
@@ -39,7 +45,9 @@ export default class NavBar extends React.Component {
     }
     return (
       <nav>
-        <div className="logo"><Link to='/dashboard'><img src={logo} alt="Click for dashboard"/></Link></div>
+        <div title="Click for dashboard" className="logo" onClick={event => this.handleSaveDestination(event)}>
+          <Link to='/dashboard'><img src={logo} alt="Click for dashboard"/></Link>
+        </div>
         <h1 className="nav-title">{this.props.title}</h1>
         <ul class="menu">
           {loggedIn(this.props.page)}
@@ -57,3 +65,5 @@ export default class NavBar extends React.Component {
     )
   }
 }
+
+export default connect()(NavBar);

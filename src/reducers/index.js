@@ -16,7 +16,8 @@ const initialState = {
   playlist:[],
   savedPlaylists: [],
   savedArtistograms: [],
-  destination: '/dashboard'
+  destination: '/dashboard',
+  errorMsg: ''
 }
 export const artistogramReducer = (state=initialState, action) => {
   switch(action.type) {
@@ -51,6 +52,10 @@ export const artistogramReducer = (state=initialState, action) => {
       return Object.assign({}, state, {
         loginData: {}
       });
+      case 'SET_ERROR_MSG':
+        return Object.assign({}, state, {
+          errorMsg: action.message
+        });
     case 'ADD_ARTISTOGRAM_ARTISTS':
       const newArtists = action.artistogramArtists;
       return Object.assign({}, state, {
