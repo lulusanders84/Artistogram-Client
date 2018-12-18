@@ -17,26 +17,31 @@ export class LogIn extends React.Component {
     this.props.dispatch(loginUser(user, this.props.history));
   }
   render() {
-  return (
-    <section>
-      <NavBar links={[]} page={true} title="Log In" />
-      <form onSubmit={event => this.handleUser(event)}>
-        <fieldset>
-          <label for="username">
-            Username
-            <input type="text" id="username" ref={input => this.username = input} />
-          </label>
-          <label for="password">
-            Password
-            <input type="password" id="password" ref={input => this.password = input} />
-          </label>
-          <button>Log in</button>
-        </fieldset>
-      </form>
-      <p className="register">Not registered? Click <Link to='/signup'>here</Link> to sign up</p>
-    </section>
-  )
-}
+    return (
+      <section>
+        <NavBar links={[]} page={true} title="Log In" />
+        <p className="error">{this.props.errorMsg}</p>
+        <form onSubmit={event => this.handleUser(event)}>
+          <fieldset>
+            <label for="username">
+              Username
+              <input type="text" id="username" ref={input => this.username = input} />
+            </label>
+            <label for="password">
+              Password
+              <input type="password" id="password" ref={input => this.password = input} />
+            </label>
+            <button>Log in</button>
+          </fieldset>
+        </form>
+        <p className="register">Not registered? Click <Link to='/signup'>here</Link> to sign up</p>
+      </section>
+    )
+  }
 }
 
-export default withRouter(connect()(LogIn));
+const mapStateToProps = (state, props) => ({
+  errorMsg: state.errorMsg
+});
+
+export default withRouter(connect(mapStateToProps)(LogIn));

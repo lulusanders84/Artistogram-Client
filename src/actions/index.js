@@ -49,15 +49,18 @@ function fetchUserData(user) {
 export const loginUser = (user, history) => (dispatch, getState) => {
   return fetchUserData(user)
   .then(res => {
-     if (!res.ok) {
-         return Promise.reject(res.statusText);
-     }
+    if(res.statusText === "Unauthorized") {
+      dispatch(setErrorMsg("Incorrect username or password"));
+      return res;
+    } else {
      return res.json();
+    }
  }).then(data => {
-   const error = data.location + " " + data.message;
-   saveAuthToken(data.authToken);
-   dispatch(setUser(data.user));
-   history.push(getState().destination);
+    if(data.authToken !== undefined) {
+     saveAuthToken(data.authToken);
+     dispatch(setUser(data.user));
+     history.push(getState().destination);
+   }
  })
 }
 
