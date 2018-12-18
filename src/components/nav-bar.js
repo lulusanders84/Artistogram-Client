@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './main.css';
 import './dropdown.css';
 import { Link } from 'react-router-dom';
@@ -11,9 +11,6 @@ import { saveDestination } from '../actions';
 import { connect } from 'react-redux';
 
 export class NavBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   handleSaveDestination(event) {
     event.preventDefault();
     this.props.dispatch(saveDestination('/dashboard'));
@@ -22,9 +19,8 @@ export class NavBar extends React.Component {
     const navBarLinks =
       navBarLinksData.reduce((acc, data) => {
         this.props.links.forEach(link => {
-          let linkComponent = <Link to={data.url}  className="nav-bar-link">{link}</Link>;
-          if(link == data.link) {
-            acc.push(<Link to={data.url} className="nav-bar-link"><li key={uuid()}>{link}</li></Link>);
+          if(link === data.link) {
+            acc.push(<Link to={data.url} className="nav-bar-link" key={uuid()}><li key={uuid()}>{link}</li></Link>);
           }
         })
         return acc;
@@ -49,13 +45,13 @@ export class NavBar extends React.Component {
           <Link to='/dashboard'><img src={logo} alt="Click for dashboard"/></Link>
         </div>
         <h1 className="nav-title">{this.props.title}</h1>
-        <ul class="menu">
+        <ul className="menu">
           {loggedIn(this.props.page)}
           {navBarLinks}
         </ul>
-        <div class="dropdown">
-          <button class="dropbtn" style={buttonStyle()}>Menu</button>
-          <ul class="dropdown-content">
+        <div className="dropdown">
+          <button className="dropbtn" style={buttonStyle()}>Menu</button>
+          <ul className="dropdown-content">
             {loggedIn(this.props.page)}
             {navBarLinks}
           </ul>

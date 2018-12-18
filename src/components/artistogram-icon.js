@@ -1,19 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './main.css';
 import './hex-grid.css';
-import {setFocalArtistName, buildArtistogramArtists, addPlaylist} from '../actions';
+import { setFocalArtistName, buildArtistogramArtists } from '../actions';
 import { connect } from 'react-redux';
 
 
 export class ArtistogramIcon extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   link(linkType) {
     const artistName = this.props.artistName;
-
     return (
       <Link
         to='/artistogram'

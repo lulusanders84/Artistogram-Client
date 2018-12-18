@@ -1,4 +1,4 @@
-import * as actions from '../actions';
+// import * as actions from '../actions';
 import { setLAST_FM_REQUEST_URL, setLAST_FM_ALBUM_REQUEST_URL } from '../api-request-urls'
 
 const initialState = {

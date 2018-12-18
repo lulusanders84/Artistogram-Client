@@ -1,8 +1,6 @@
-import { setLAST_FM_REQUEST_URL,
-  setLAST_FM_TOP_ALBUMS_REQUEST_URL,
-  setAlbumRequestUrl,
+import {
+  setLAST_FM_REQUEST_URL,
   setMbRequestUrl,
-  setMbAlbumsRequestUrl,
   setTracksRequestUrl,
   setTrackInfoRequestUrl } from '../api-request-urls';
 
@@ -196,23 +194,6 @@ function fetchOriginYear(artists) {
     })
 }
 
-function fetchFirstAlbumYear(mbid) {
-  const API_URL = setMbAlbumsRequestUrl(mbid);
-  return fetch(API_URL)
-    .then(res => {
-      if (!res.ok) {
-          return Promise.reject(res.statusText);
-      }
-      return res.json();
-    }).then(details => {
-      if(details.releases.length > 0) {
-        return details.releases[0].date;
-      } else {
-        return 'dateless';
-      }
-    })
-}
-
 function addYearToArtists(artists) {
   artists = artists.artists;
   artistogramArtists = artistogramArtists.reduce((acc, item) => {
@@ -227,14 +208,6 @@ function addYearToArtists(artists) {
     }
     return acc;
   },[])
-  artistogramArtists.forEach(artist => {
-    if(artist.year === undefined) {
-      fetchFirstAlbumYear(artist.mbid)
-      .then(year => {
-        artist.year = year;
-      })
-    }
-  })
   return artistogramArtists;
 }
 

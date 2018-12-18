@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './main.css';
 import './decade.css';
 import './hex-grid.css';
-import { res, randomImages } from './dataStore';
 import ArtistogramIcon from './artistogram-icon';
-import { buildArtistogramArtists } from '../actions';
 import { addEmptyHex } from './empty-hex';
 import { connect } from 'react-redux';
 import uuid from 'uuid/v4';
 
 export class Decade extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const decadeArtists = `${this.props.decade}Artists`;
 

@@ -10,7 +10,7 @@ import capitalizeName from '../capitalizeName';
 export function Dashboard(props) {
   if(props.loggedIn) {
     const navBarLinks = ["create new artistogram"];
-    const pageTitle = `${capitalizeName(props.user)}\'s Dashboard`;
+    const pageTitle = `${capitalizeName(props.user)}'s Dashboard`;
     return (
       <div>
         <NavBar links={navBarLinks} title={pageTitle}/>

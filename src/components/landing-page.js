@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './main.css';
 import './main.css';
 import './hex-grid.css';
 import NavBar from './nav-bar';
 import CreateArtistogram from './create-artistogram';
-import landingBg from '../landingBG.png';
-import agImage from '../artistogramImage.png';
 
 export default function LandingPage(props) {
   const navBarLinks = ["sign up"];
@@ -15,7 +13,7 @@ export default function LandingPage(props) {
         <NavBar links={navBarLinks} title="Artistogram"/>
       </header>
       <main>
-        <section className="intro-bg" role="region">
+        <section className="intro-bg">
           <div className="intro-container">
             <div className="intro-text">
               <h2>What is an Artistogram?</h2>

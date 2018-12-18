@@ -5,7 +5,7 @@ import './dashboard.css';
 import PlaylistIcon from './playlist-icon';
 import ArtistogramIcon from './artistogram-icon';
 import { addEmptyHex } from './empty-hex';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 export class List extends React.Component {
   render() {
@@ -29,7 +29,6 @@ export class List extends React.Component {
       }
     });
     addEmptyHex(listItems);
-    const listClassName = `${this.props.listType}-list`;
     return (
       <section className={listType}>
     <h2><div class="title-container">{listType}</div></h2>

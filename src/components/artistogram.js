@@ -27,7 +27,7 @@ export class Artistogram extends React.Component {
     );
       return (
         <div>
-          <h2>Clicking on an artist's name will take you to their artistogram.</h2>
+          <h2>Click on an artist's name to see their artistogram.</h2>
           <section className="artistogram">
             {decadeSections}
           </section>
