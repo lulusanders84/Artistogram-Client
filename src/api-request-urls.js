@@ -1,8 +1,7 @@
-import React from 'react';
-import { LAST_FM_API_KEY } from './keys';
+
+import { LAST_FM_API_KEY } from './config';
 
 const LAST_FM_URL = "https://ws.audioscrobbler.com/2.0/?";
-const LAST_FM_METHOD = "artist.getSimilar";
 
 export function setLAST_FM_REQUEST_URL(method, artist, limit) {
   return `${LAST_FM_URL}method=${method}&artist=${artist}&api_key=${LAST_FM_API_KEY}&format=json&limit=${limit}`;

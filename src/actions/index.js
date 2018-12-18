@@ -344,10 +344,6 @@ export const addArtistogramArtists = (artistogramArtists) => ({
   artistogramArtists,
 })
 
-export const CLEAR_ARTISTOGRAM_ARTISTS = 'CLEAR_ARTISTOGRAM_ARTISTS';
-export const clearArtistogramArtists = () => ({
-  type: CLEAR_ARTISTOGRAM_ARTISTS,
-})
 
 export const SET_PLAYLIST = 'SET_PLAYLIST';
 export const setPlaylist = (playlist) => ({

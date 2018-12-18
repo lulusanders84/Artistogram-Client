@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './main.css';
 import './hex-grid.css';
 import './playlist.css';
@@ -9,10 +9,6 @@ import uuid from 'uuid/v4';
 
 
 export class Playlist extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const songs = this.props.playlist.map((song, index) => {
       return (
@@ -40,7 +36,6 @@ export class Playlist extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  focalArtist: state.focalArtist,
   playlist: state.playlist,
 
 });

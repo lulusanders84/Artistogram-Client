@@ -7,9 +7,8 @@ import { addEmptyHex } from './empty-hex';
 import { connect } from 'react-redux';
 import uuid from 'uuid/v4';
 
-export class Decade extends React.Component {
-  render() {
-    const decadeArtists = `${this.props.decade}Artists`;
+export function Decade(props) {
+    const decadeArtists = `${props.decade}Artists`;
 
     function buildDecadeList(decade) {
     if(decade.length !== 0) {
@@ -40,15 +39,14 @@ export class Decade extends React.Component {
     }
   }
       return (
-        <section className={this.props.class}>
-            <h2><div className="decade title-container">{this.props.title}</div></h2>
+        <section className={props.class}>
+            <h2><div className="decade title-container">{props.title}</div></h2>
             <div className="decade-container">
-              {buildDecadeList(this.props[decadeArtists])}
+              {buildDecadeList(props[decadeArtists])}
             </div>
         </section>
       )
   }
-}
 
 const mapStateToProps = (state, props) => ({
   focalArtist: state.focalArtist,

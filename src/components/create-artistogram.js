@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './main.css';
 import './forms.css';
 import './hex-grid.css';
-import './create-artistogram.css';
 import {setFocalArtistName} from '../actions'
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -15,9 +14,7 @@ export class CreateArtistogram extends React.Component {
     this.props.history.push(`/artistogram`);
   }
   render() {
-
     return (
-
       <div id="create">
         <form onSubmit={event => this.handleSetFocalArtist(event)}>
           <fieldset>

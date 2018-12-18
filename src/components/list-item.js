@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './main.css';
 import './hex-grid.css';
-import './dashboard.css';
 import { userData } from './dataStore';
 import PlaylistIcon from './playlist-icon';
 

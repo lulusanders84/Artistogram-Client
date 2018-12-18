@@ -1,6 +1,5 @@
 import React from 'react';
 import './main.css';
-import './main.css';
 import './hex-grid.css';
 import NavBar from './nav-bar';
 import CreateArtistogram from './create-artistogram';

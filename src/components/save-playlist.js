@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './main.css';
 import './forms.css';
@@ -8,9 +8,6 @@ import LogIn from './log-in';
 import NavBar from './nav-bar';
 
 export class SavePlaylist extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     this.props.dispatch(saveDestination('/save-playlist'));
   }

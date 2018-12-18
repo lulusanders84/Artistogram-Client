@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './main.css';
 import './artist-icon.css';
-import './dashboard.css';
 import PlaylistIcon from './playlist-icon';
 import ArtistogramIcon from './artistogram-icon';
 import { addEmptyHex } from './empty-hex';

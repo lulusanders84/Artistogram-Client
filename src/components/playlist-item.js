@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './main.css';
 import './hex-grid.css';
 import './playlist.css';

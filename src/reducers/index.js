@@ -1,5 +1,3 @@
-// import * as actions from '../actions';
-import { setLAST_FM_REQUEST_URL, setLAST_FM_ALBUM_REQUEST_URL } from '../api-request-urls'
 
 const initialState = {
   focalArtist: {},
@@ -68,10 +66,6 @@ export const artistogramReducer = (state=initialState, action) => {
             tens: [...newArtists[1]],
 
           });
-    case 'CLEAR_ARTISTOGRAM_ARTISTS':
-      return Object.assign({}, state, {
-
-      })
     case 'SET_PLAYLIST':
       return Object.assign({}, state, {
         playlist: action.playlist

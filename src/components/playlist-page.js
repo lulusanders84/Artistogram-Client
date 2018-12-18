@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './main.css';
 import './hex-grid.css';
 import NavBar from './nav-bar';
@@ -7,9 +7,6 @@ import { connect } from 'react-redux';
 import { saveDestination } from '../actions';
 
 export class PlaylistPage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     this.props.dispatch(saveDestination('/playlist'));
   }
@@ -27,7 +24,6 @@ export class PlaylistPage extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   focalArtist: state.focalArtist,
-  playlist: state.playlist
 });
 
 export default connect(mapStateToProps)(PlaylistPage);

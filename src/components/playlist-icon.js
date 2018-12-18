@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './main.css';
 import './hex-grid.css';
-import {setFocalArtist, buildArtistogramArtists, setPlaylist} from '../actions';
+import {setFocalArtist, setPlaylist} from '../actions';
 import { connect } from 'react-redux';
 
 export class PlaylistIcon extends React.Component {
@@ -52,8 +52,6 @@ export class PlaylistIcon extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  focalArtist: state.focalArtist,
-  artistogramArtists: state.artistogramArtists,
   savedPlaylists: state.savedPlaylists,
 });
 

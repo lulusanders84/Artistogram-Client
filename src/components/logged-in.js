@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import './main.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 export class LoggedIn extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
   render() {
     const inOrOut = this.props.loggedIn ? "out":"in";
     const url = this.props.loggedIn ? "/":"/login";

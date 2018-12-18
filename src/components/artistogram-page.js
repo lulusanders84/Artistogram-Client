@@ -1,16 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './main.css';
 import './hex-grid.css';
 import NavBar from './nav-bar';
 import Artistogram from './artistogram';
-import { decades, res, navBarLinksData } from './dataStore';
 import { connect } from 'react-redux';
 import { saveDestination } from '../actions';
 
 export class ArtistogramPage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     this.props.dispatch(saveDestination('/artistogram'));
   }

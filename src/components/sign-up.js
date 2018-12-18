@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './main.css';
 import './forms.css';
 import { addNewUser } from '../actions';

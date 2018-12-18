@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './main.css';
-import './dashboard.css';
 import List from './list';
 import NavBar from './nav-bar';
 import LogIn from './log-in';
