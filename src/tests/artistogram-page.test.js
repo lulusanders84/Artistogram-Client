@@ -10,11 +10,11 @@ it('Renders without crashing', () => {
 });
 
 it('Dispatches saveDestination from ArtistogramPage', () => {
-        const dispatch = jest.fn();
-        const wrapper = shallow(
-            <ArtistogramPage focalArtist='oasis' dispatch={dispatch} />
-        );
-        const instance = wrapper.instance();
-        instance.componentDidMount();
-        expect(dispatch).toHaveBeenCalledWith(saveDestination('/artistogram'));
-    });
+  const dispatch = jest.fn();
+  const wrapper = shallow(
+      <ArtistogramPage focalArtist='oasis' dispatch={dispatch} />
+  );
+  const instance = wrapper.instance();
+  instance.componentDidMount();
+  expect(dispatch).toHaveBeenCalledWith(saveDestination('/artistogram'));
+});
