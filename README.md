@@ -8,3 +8,20 @@ playlists for later use.
 
 ![](https://github.com/lulusanders84/artistogram/blob/master/src/images/landing-page.png)
 
+![](https://github.com/lulusanders84/artistogram/blob/master/src/images/artistogram.png)
+
+![](https://github.com/lulusanders84/artistogram/blob/master/src/images/playlist.png)
+
+![](https://github.com/lulusanders84/artistogram/blob/master/src/images/dashboard.png)
+
+### Technology Stack
+
+Artistogram uses:
+* HTML
+* CSS
+* JavaScript
+* React (including React-Redux, React-Router and React-Thunk libraries)
+* Node.js
+* Express
+* MongoDB
+
