@@ -25,16 +25,18 @@ export class LogIn extends React.Component {
           <fieldset>
             <label for="username">
               Username
-              <input type="text" id="username" ref={input => this.username = input} />
+              <input type="text" id="username" ref={input => this.username = input} value="DemoUser"/>
             </label>
             <label for="password">
               Password
-              <input type="password" id="password" ref={input => this.password = input} />
+              <input type="password" id="password" ref={input => this.password = input} value="password"/>
             </label>
             <button>Log in</button>
           </fieldset>
         </form>
-        <p className="register">Not registered? Click <Link to='/signup'>here</Link> to sign up</p>
+        <p className="register">Not registered? Click <Link to='/signup'>here</Link> to sign up.
+        <br />Log in as DemoUser with password 'password' to try it out.
+        </p>
       </section>
     )
   }
