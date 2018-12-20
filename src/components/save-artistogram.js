@@ -8,9 +8,6 @@ import LogIn from './log-in';
 import NavBar from './nav-bar';
 
 export class SaveArtistogram extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   handleSaveArtistogram(event) {
     event.preventDefault();
     const name = this.textInput.value;
