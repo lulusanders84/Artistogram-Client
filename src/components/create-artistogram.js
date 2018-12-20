@@ -22,7 +22,7 @@ export class CreateArtistogram extends React.Component {
             <legend>Enter your favourite musician or band</legend>
             <div>
               <input type="text" ref={input => this.textInput = input}/>
-              <input type="submit" value="Create Artistogram" />
+              <input id="create-button" type="submit" value="Create Artistogram" />
             </div>
           </fieldset>
         </form>
