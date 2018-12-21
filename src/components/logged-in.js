@@ -8,7 +8,7 @@ export class LoggedIn extends React.Component {
     handleToggleLoggedIn(event){
       if(this.props.loggedIn){
         this.props.dispatch(setLoggedIn(false));
-        this.props.setUser({username: '', savedPlaylists: [], savedArtistograms: []});
+        this.props.dispatch(setUser({username: '', savedPlaylists: [], savedArtistograms: []}));
       }
     }
   render() {
