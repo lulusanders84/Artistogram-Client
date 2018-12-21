@@ -9,4 +9,4 @@ deploy:
     secure: 6c330cc5-6eeb-49ac-9733-93786685cd5a
   app: artistogram-client
   on:
-    repo: lulusanders84/artistogram-client
+    repo: lulusanders84/artistogram
