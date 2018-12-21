@@ -39,6 +39,10 @@ export const artistogramReducer = (state=initialState, action) => {
         savedArtistograms: action.savedArtistograms,
         loggedIn: true
       });
+      case 'SET_LOGGED_IN':
+        return Object.assign({}, state, {
+          loggedIn: action.loggedIn
+        });
     case 'SET_LOGIN_DATA':
       return Object.assign({}, state, {
         loginData: {

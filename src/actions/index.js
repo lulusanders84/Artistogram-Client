@@ -326,6 +326,12 @@ export const setUser = (user) => ({
   loggedIn: false
 })
 
+export const SET_LOGGED_IN = 'SET_LOGGED_IN';
+export const setLoggedIn = (loggedIn) => ({
+  type: SET_LOGGED_IN,
+  loggedIn,
+})
+
 export const SET_LOGIN_DATA = 'SET_LOGIN_DATA';
 export const setLoginData = (user) => ({
   type: SET_LOGIN_DATA,
