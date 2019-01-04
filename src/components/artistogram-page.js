@@ -4,21 +4,33 @@ import './hex-grid.css';
 import NavBar from './nav-bar';
 import Artistogram from './artistogram';
 import { connect } from 'react-redux';
-import { saveDestination } from '../actions';
+import { saveDestination, setLoading } from '../actions';
 
 export class ArtistogramPage extends React.Component {
   componentDidMount() {
     this.props.dispatch(saveDestination('/artistogram'));
+    this.props.dispatch(setLoading(true));
   }
   render() {
     const links = ["sign up", "create new artistogram", "view playlist", "save artistogram"];
     const pageTitle = `${this.props.focalArtist.name}`;
+    const loading = () => {
+      if(this.props.loading) {
+        return 'loading'
+      } else {
+        return 'loading inactive'
+      }
+    }
+    console.log(this.props.loading, loading());
     return (
       <div>
         <header>
           <NavBar links={links} playlist='add' title={pageTitle} />
         </header>
-        <Artistogram />
+        <div>
+          <div className={loading()}><p>Loading...</p></div>
+          <Artistogram />
+        </div>
       </div>
     )
   }
@@ -26,6 +38,7 @@ export class ArtistogramPage extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   focalArtist: state.focalArtist,
+  loading: state.loading
 });
 
 export default connect(mapStateToProps)(ArtistogramPage);

@@ -15,7 +15,8 @@ const initialState = {
   savedPlaylists: [],
   savedArtistograms: [],
   destination: '/dashboard',
-  errorMsg: ''
+  errorMsg: '',
+  loading: false
 }
 export const artistogramReducer = (state=initialState, action) => {
   switch(action.type) {
@@ -68,6 +69,7 @@ export const artistogramReducer = (state=initialState, action) => {
             ninties: [...newArtists[9]],
             aughts: [...newArtists[0]],
             tens: [...newArtists[1]],
+            loading: false
 
           });
     case 'SET_PLAYLIST':
@@ -85,6 +87,10 @@ export const artistogramReducer = (state=initialState, action) => {
     case 'SAVE_DESTINATION':
     return Object.assign({}, state, {
       destination: action.destination
+    });
+    case 'SET_LOADING':
+    return Object.assign({}, state, {
+      loading: action.loading
     });
     default:
       return state;
