@@ -1,6 +1,6 @@
 
 const initialState = {
-  focalArtist: {},
+  focalArtist: {name: "oasis"},
   username: '',
   loginData: {},
   loggedIn: false,

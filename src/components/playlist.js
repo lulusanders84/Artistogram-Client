@@ -16,6 +16,7 @@ export class Playlist extends React.Component {
           name={song.name}
           artist={song.artist}
           duration={song.duration}
+          year={song.year}
           key={uuid()} />
       )
     })
@@ -26,6 +27,7 @@ export class Playlist extends React.Component {
           <li>
             <div className="song">Title</div>
             <div className="playlist-artist">Artist</div>
+            <div className="year">Year</div>
             <div className="length">Length</div>
           </li>
           {songs}

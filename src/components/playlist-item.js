@@ -17,6 +17,7 @@ export default function(props) {
       <li>
         <div className="song">{props.name}</div>
         <div className="playlist-artist">{props.artist}</div>
+        <div className="year">{props.year}</div>        
         <div className="length">{setDuration(props.duration)}</div>
       </li>
 

@@ -7,6 +7,8 @@
 
 .playlist-list {
   margin-top: 20px;
+  display: flex;
+  justify-content: "space-between";
 }
 
 .playlist-list > li {
@@ -17,11 +19,18 @@
   display: flex;
 }
 
-.song, .playlist-artist {
+.song {
   flex: 4;
   justify-content: flex-start;
 }
 
-.length {
+.playlist-artist {
+  flex: 2;
+  justify-content: flex-start;
+}
+
+.length, .year {
   flex: 1;
+  display: flex;
+  justify-content: center
 }
