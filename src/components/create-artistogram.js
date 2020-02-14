@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './main.css';
 import './forms.css';
 import './hex-grid.css';
@@ -7,31 +7,33 @@ import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { spotifyAuth } from '../libs/spotify';
 
-export function CreateArtistogram(props) {
-  useEffect(() => {
+export class CreateArtistogram extends React.Component {
+  componentDidMount() {
     spotifyAuth();
-  }, [spotifyAuth])
-  const handleSetFocalArtist = (event) => {
-    const artist = textInput.value;
+  };
+  handleSetFocalArtist(event) {
+    const artist = this.textInput.value;
     event.preventDefault();
-    props.dispatch(setFocalArtistName(artist));
-    props.history.push(`/artistogram`);
+    this.props.dispatch(setFocalArtistName(artist));
+    this.props.history.push(`/artistogram`);
   }
-  let textInput = React.createRef();
-
+  textInput = React.createRef();
+  render() {
     return (
       <div id="create">
-        <form onSubmit={event => handleSetFocalArtist(event)}>
+        <form onSubmit={event => this.handleSetFocalArtist(event)}>
           <fieldset>
             <legend>Enter your favourite musician or band</legend>
             <div>
-              <input type="text" ref={input => textInput = input}/>
+              <input type="text" ref={input => this.textInput = input}/>
               <input id="create-button" type="submit" value="Create Artistogram" />
             </div>
           </fieldset>
         </form>
       </div>
-    )
+    )    
+  }
+
 }
 
 export default withRouter(connect()(CreateArtistogram));

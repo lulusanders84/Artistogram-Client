@@ -6,10 +6,6 @@ import {setFocalArtist, setPlaylist} from '../actions';
 import { connect } from 'react-redux';
 
 export class PlaylistIcon extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   link() {
     const artistName = this.props.artistName;
     return (

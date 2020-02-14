@@ -1,16 +1,7 @@
-import {
-  setLAST_FM_REQUEST_URL,
-  setMbRequestUrl,
-  setTracksRequestUrl,
-  setTrackInfoRequestUrl, 
-  setMbReleaseRequestUrl,
-  setMbRecordingUrl} from '../api-request-urls';
+import { setLAST_FM_REQUEST_URL } from '../api-request-urls';
 import { fetchSpotifyArtistIdAndImage, getSpotifyToken, fetchSpotifyTopTracks } from '../libs/spotify';
-import { fetchTracksFromMb } from '../libs/musicbrainz';
 
 const { API_BASE_URL } = require('../config');
-
-let artistogramArtists;
 
 export const addNewUser = (newUser, history) => (dispatch, getState) => {
   dispatch(setLoginData(newUser));
@@ -131,7 +122,7 @@ export const buildArtistogramArtists = (focalArtist) => (dispatch, getState) => 
   fetchSimilarArtists(focalArtist)
   .then(artists => {
     return Promise.all(artists.map(artist => {
-      if(artist.name == "Hurricane #1") {
+      if(artist.name === "Hurricane #1") {
         artist.name = "Hurricane Number 1";
       }
       return setArtistFromSpotify(token, artist.name).then(res => {
@@ -163,7 +154,6 @@ export const buildArtistogramArtists = (focalArtist) => (dispatch, getState) => 
     ];
     return buildArtistogramPlaylist(artists);
   }).then(playlist => {
-      console.log(playlist);
       dispatch(setPlaylist(playlist));
   })
 })
@@ -184,70 +174,23 @@ function fetchSimilarArtists(focalArtist) {
   })
 }
 
-function fetchOriginYear(artists) {
-    artistogramArtists = artists.map(artist => {
-      if(artist.name === "Nirvana") {
-        artist.mbid = '5b11f4ce-a62d-471e-81fc-a69a8278c7da';
-      }
-      if(artist.name === "The Charlatans") {
-        artist.mbid = '8434409e-baa9-4e12-b4aa-566a91c7d7cf';
-      }
-
-      return {
-        imageUrl: artist.imageUrl,
-        name: artist.name,
-        id: artist.id,
-      }
-    })
-    // let artistStr = artists.map((artist, index) => {
-    //   return `arid:${artist.mbid}`
-    // })
-    // artistStr = artistStr.join(' ');
-
-    // let API_URL = encodeURI(setMbRequestUrl(artistStr));
-    // return fetch(API_URL)
-    // .then(res => {
-    //   if (!res.ok) {
-    //       return Promise.reject(res.statusText);
-    //   }
-    //   return res.json();
-    // })
-}
-
-function addYearToArtists(artists) {
-  artists = artists.artists;
-  artistogramArtists = artistogramArtists.reduce((acc, item) => {
-    let match = artists.find(function(artist) {
-      return artist.id === item.mbid
-    })
-    if (match != undefined) {
-      const lifespan = 'life-span'
-      item.year = match[lifespan].begin;
-      item.type = match.type;
-      acc.push(item);
-    }
-    return acc;
-  },[])
-  return artistogramArtists;
-}
-
 function sortArtistsToDecades(artists) {
       artists = artists.map(artist => {
-        if(artist.year !=undefined) {
+        if(artist.year !==undefined) {
           artist.decade = artist.year.substring(2);
         }
         return artist;
       })
       let sortedArtists = {"5":[], "6":[], "7":[], "8":[], "9":[], "0":[], "1":[]};
       artists.forEach(artist => {
-        if(artist.year != undefined) {
+        if(artist.year !== undefined) {
           let decade = artist.decade.split('');
           if (artist.type === 'Person') {
             decade = parseInt(decade[0]) + 3;
             decade = decade.toString();
           }
           Object.keys(sortedArtists).forEach(key => {
-            if(decade[0] == key) {
+            if(decade[0] === key) {
               sortedArtists[key].push(artist);
             }
           });
@@ -262,7 +205,6 @@ function sortArtistsToDecades(artists) {
 }
 
 export const buildArtistogramPlaylist = (artists) => {
-  console.log(artists);
     return artists.map(artistObj => {
       const { name: artist, topTrack, year } = artistObj;
       const { title: name, duration } = topTrack;
@@ -275,51 +217,27 @@ export const buildArtistogramPlaylist = (artists) => {
     })
 }
 
-function fetchTopTrack(artist) {
-  let API_URL = setTracksRequestUrl(artist.mbid);
-  return fetch(API_URL)
-  .then(res => {
-    if (!res.ok) {
-        return Promise.reject(res.statusText);
-    }
-    return res.json();
-  }).then(topTracks => {
-      return topTracks.toptracks.track[0].name;
-  })
+
+export const fetchAndSetFocalArtistInfo = (focalArtist) => async dispatch => {
+  const token = getSpotifyToken();
+  const artist = await setArtistFromSpotify(token, focalArtist);
+  dispatch(setFocalArtist(artist));
 }
 
-function fetchTrackInfo(artist, track) {
-  let API_URL = setTrackInfoRequestUrl(artist, track);
-  return fetch(API_URL)
-  .then(res => {
-    if (!res.ok) {
-        return Promise.reject(res.statusText);
-    }
-    return res.json();
-  }).then(trackInfo => {
-      return trackInfo;
-    })
-  }
+const setArtistFromSpotify = async (token, artist) => {
+  return fetchSpotifyArtistIdAndImage(token, encodeURI(artist)).then(res => {
+    if(res) {
+      const { image, id } = res;
+      return {
+        name: artist,
+        imageUrl: image.url,
+        id,
+      };
+    } else return null;
+  });
+      
+}
 
-  export const fetchAndSetFocalArtistInfo = (focalArtist) => async dispatch => {
-    const token = getSpotifyToken();
-    const artist = await setArtistFromSpotify(token, focalArtist);
-    dispatch(setFocalArtist(artist));
-  }
-
-  const setArtistFromSpotify = async (token, artist) => {
-    return fetchSpotifyArtistIdAndImage(token, encodeURI(artist)).then(res => {
-      if(res) {
-        const { image, id } = res;
-        return {
-          name: artist,
-          imageUrl: image.url,
-          id,
-        };
-      } else return null;
-    });
-        
-  }
 export const SET_FOCAL_ARTIST = 'SET_FOCAL_ARTIST';
 export const setFocalArtist = (artist) => ({
     type: SET_FOCAL_ARTIST,

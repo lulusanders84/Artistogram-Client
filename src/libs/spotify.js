@@ -86,15 +86,6 @@ const getTopTrackInfo = (track, year) => {
   }
 }
 
-const spotifySwitch = (res, itemRequested) => {
-  switch(itemRequested) {
-    case "image":
-      return res.artists.items[0] ? res.artists.items[0].images[0] : null;
-    default:
-      return "Item type not found"
-  }
-}
-
 export const storeSpotifyToken = (token) => {
   window.localStorage.setItem("token", token);
 }

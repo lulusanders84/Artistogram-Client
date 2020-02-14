@@ -44,10 +44,4 @@ export class ArtistogramIcon extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => ({
-  focalArtist: state.focalArtist,
-  artistogramArtists: state.artistogramArtists,
-  savedPlaylists: state.savedPlaylists,
-});
-
 export default connect()(ArtistogramIcon);

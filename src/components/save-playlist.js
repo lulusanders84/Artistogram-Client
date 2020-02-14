@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './main.css';
 import './forms.css';
 import {putSavedPlaylist, saveDestination} from '../actions';

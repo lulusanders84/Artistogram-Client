@@ -23,7 +23,6 @@ export class ArtistogramPage extends React.Component {
         return 'loading inactive'
       }
     }
-    console.log(this.props.loading, loading());
     return (
       <div>
         <header>

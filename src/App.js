@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route } from 'react-router-dom';
 import LandingPage from './components/landing-page';
 import CreateArtistogramPage from './components/create-artistogram-page';
 import ArtistogramPage from './components/artistogram-page';

@@ -3,7 +3,6 @@ import './main.css';
 import './hex-grid.css';
 import './playlist.css';
 import { connect } from 'react-redux';
-import { addPlaylist } from '../actions';
 import PlaylistItem from './playlist-item';
 import uuid from 'uuid/v4';
 
