@@ -2,7 +2,8 @@ const client_id = "48bc0c9c264c40e3ae92c5b0719547bd";
 const client_secret = "c9ea9e59b7374629a9280aee5314d942"
 
 export const spotifyAuth = async () => {
-  const refreshTime = window.localStorage.getItem("refreshTime");
+  console.log("spotify authing...")
+  const refreshTime = window.localStorage.getItem("");
   if(!refreshTime || refreshTime < Date.now()) {
    const {token, refreshInSecs} = await fetchSpotifyToken();
    storeSpotifyToken(token);
@@ -10,7 +11,7 @@ export const spotifyAuth = async () => {
   }
 }
 
-export const fetchSpotifyToken = () => {
+const fetchSpotifyToken = () => {
   return fetch(`https://accounts.spotify.com/api/token`, {
     method: "POST",
     headers: {
@@ -90,9 +91,14 @@ export const storeSpotifyToken = (token) => {
   window.localStorage.setItem("token", token);
 }
 
-export const getSpotifyToken = () => {
-  return window.localStorage.getItem("token");
-
+export const getSpotifyToken = (dispatch, setLoading) => {
+  const storedToken = window.localStorage.getItem("token")
+  dispatch(setLoading(true))
+  return storedToken 
+  ? storedToken
+  : spotifyAuth().then(() => {
+    return window.localStorage.getItem("token")
+  })  
 }
 
 export const storeSpotifyRefreshTime = (refreshIn) => {

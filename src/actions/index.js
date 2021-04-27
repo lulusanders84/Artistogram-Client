@@ -117,8 +117,8 @@ return fetch(`${API_BASE_URL}/artistograms/${username}`, {
 })
 }
 
-export const buildArtistogramArtists = (focalArtist) => (dispatch, getState) => {
-  const token = getSpotifyToken();
+export const buildArtistogramArtists = (focalArtist) => async (dispatch, getState) => {
+  const token = await getSpotifyToken(dispatch, setLoading);
   fetchSimilarArtists(focalArtist)
   .then(artists => {
     return Promise.all(artists.map(artist => {
@@ -219,7 +219,7 @@ export const buildArtistogramPlaylist = (artists) => {
 
 
 export const fetchAndSetFocalArtistInfo = (focalArtist) => async dispatch => {
-  const token = getSpotifyToken();
+  const token = await getSpotifyToken(dispatch, setLoading);
   const artist = await setArtistFromSpotify(token, focalArtist);
   dispatch(setFocalArtist(artist));
 }
