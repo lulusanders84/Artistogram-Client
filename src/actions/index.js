@@ -1,5 +1,5 @@
 import { setLAST_FM_REQUEST_URL } from '../api-request-urls';
-import { fetchSpotifyArtistIdAndImage, getSpotifyToken, fetchSpotifyTopTracks } from '../libs/spotify';
+import { Spotify } from '../libs/spotify'
 
 const { API_BASE_URL } = require('../config');
 
@@ -92,13 +92,25 @@ export const putSavedPlaylist = (playlistData, history) => (dispatch, getState) 
  })
 }
 
-export const putSavedArtistogram = (artistogramData, history) => (dispatch, getState) => {
-  const { username, name, imageUrl } = artistogramData;
+export const cleanArtistograms = () => (dispatch, getState) => {
+  const { savedArtistograms } = getState()
+  const imagelessArtistograms = savedArtistograms.filter(artistogram => artistogram.imageUrl === undefined)
+  console.log(imagelessArtistograms)
+  imagelessArtistograms.forEach(gram => {
+    dispatch(putArtistogram(gram, []))
+  })
+}
+
+export const putArtistogram = (artistogramData, history) => (dispatch, getState) => {
+  const { name, imageUrl } = artistogramData;
+  const { savedArtistograms, username } = getState()
+  const inSavedArtistograms = savedArtistograms.some(artistogram => artistogram.name === name)
+  const action = inSavedArtistograms ? "delete" : "add"
   const data = {
     name,
     imageUrl,
   };
-return fetch(`${API_BASE_URL}/artistograms/${username}`, {
+return fetch(`${API_BASE_URL}/artistograms/${action}/${username}`, {
   method: "PUT",
   headers: {
     "Content-Type": "application/json",
@@ -117,8 +129,8 @@ return fetch(`${API_BASE_URL}/artistograms/${username}`, {
 })
 }
 
-export const buildArtistogramArtists = (focalArtist) => async (dispatch, getState) => {
-  const token = await getSpotifyToken(dispatch, setLoading);
+export const buildArtistogramArtists = (focalArtist) => async (dispatch) => {
+  const token = await Spotify.getToken(dispatch, setLoading);
   fetchSimilarArtists(focalArtist)
   .then(artists => {
     return Promise.all(artists.map(artist => {
@@ -138,7 +150,7 @@ export const buildArtistogramArtists = (focalArtist) => async (dispatch, getStat
       return acc;
     }, [])
     return Promise.all(artists.map(artist => {
-      return fetchSpotifyTopTracks(token, artist)
+      return Spotify.fetchTopTracks(token, artist)
     })).then(artists => {
     return sortArtistsToDecades(artists);
   }).then(sortedArtists => {
@@ -219,13 +231,14 @@ export const buildArtistogramPlaylist = (artists) => {
 
 
 export const fetchAndSetFocalArtistInfo = (focalArtist) => async dispatch => {
-  const token = await getSpotifyToken(dispatch, setLoading);
+  const token = await Spotify.getToken(dispatch, setLoading);
   const artist = await setArtistFromSpotify(token, focalArtist);
+  console.log(artist)
   dispatch(setFocalArtist(artist));
 }
 
 const setArtistFromSpotify = async (token, artist) => {
-  return fetchSpotifyArtistIdAndImage(token, encodeURI(artist)).then(res => {
+  return Spotify.fetchArtistIdAndImage(token, encodeURI(artist)).then(res => {
     if(res) {
       const { image, id } = res;
       return {
@@ -236,6 +249,10 @@ const setArtistFromSpotify = async (token, artist) => {
     } else return null;
   });
       
+}
+
+export const setError = (message) => dispatch => {
+  dispatch(setErrorMsg(message))
 }
 
 export const SET_FOCAL_ARTIST = 'SET_FOCAL_ARTIST';

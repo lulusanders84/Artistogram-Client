@@ -23,11 +23,11 @@ export class LogIn extends React.Component {
         <p className="error">{this.props.errorMsg}</p>
         <form onSubmit={event => this.handleUser(event)}>
           <fieldset>
-            <label for="username">
+            <label htmlFor="username">
               Username
               <input type="text" id="username" ref={input => this.username = input} defaultValue="DemoUser"/>
             </label>
-            <label for="password">
+            <label htmlFor="password">
               Password
               <input type="password" id="password" ref={input => this.password = input} defaultValue="password"/>
             </label>

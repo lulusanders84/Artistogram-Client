@@ -5,13 +5,13 @@ import './hex-grid.css';
 import {setFocalArtistName, setLoading} from '../actions'
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { spotifyAuth } from '../libs/spotify';
+import { Spotify } from '../libs/spotify';
 
 export class CreateArtistogram extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(setLoading(true))
-    spotifyAuth().then(() => {
+    Spotify.auth().then(() => {
       this.props.dispatch(setLoading(false))
     });
   };

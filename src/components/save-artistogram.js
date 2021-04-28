@@ -1,7 +1,7 @@
 import React from 'react';
 import './main.css';
 import './forms.css';
-import {putSavedArtistogram, saveDestination} from '../actions';
+import {putArtistogram, saveDestination} from '../actions';
 import { connect } from 'react-redux';
 import LogIn from './log-in';
 import NavBar from './nav-bar';
@@ -15,7 +15,7 @@ export class SaveArtistogram extends React.Component {
       name,
       imageUrl: this.props.focalArtist.imageUrl
     };
-    this.props.dispatch(putSavedArtistogram(artistogramData, this.props.history));
+    this.props.dispatch(putArtistogram(artistogramData, this.props.history));
   }
   componentDidMount() {
     this.props.dispatch(saveDestination('/save-artistogram'));
