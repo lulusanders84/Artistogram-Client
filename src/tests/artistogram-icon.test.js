@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 import { ArtistogramIcon } from '../components/artistogram-icon';
-import { setFocalArtistName, buildArtistogramArtists } from '../actions';
+import { setFocalArtist, buildArtistogramArtists } from '../actions';
 
 it('Renders without crashing', () => {
     shallow(<ArtistogramIcon />);
@@ -16,5 +16,5 @@ it('Dispatches setFocalArtist from artistogramIcon', () => {
         const instance = wrapper.instance();
         const artist = 'oasis';
         instance.handleSetFocalArtist(artist);
-        expect(dispatch).toHaveBeenCalledWith(setFocalArtistName(artist));
+        expect(dispatch).toHaveBeenCalledWith(setFocalArtist(artist));
     });
