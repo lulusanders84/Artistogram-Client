@@ -1,109 +1,94 @@
+import { fetchAndReturnJson } from "./fetchAndReturnJson";
+import { getTopTrackInfo } from "./getTopTrackInfo";
+import { getYear } from "./getYear";
+
 const client_id = "48bc0c9c264c40e3ae92c5b0719547bd";
 const client_secret = "c9ea9e59b7374629a9280aee5314d942"
 
-export const spotifyAuth = async () => {
-  console.log("spotify authing...")
-  const refreshTime = window.localStorage.getItem("");
-  if(!refreshTime || refreshTime < Date.now()) {
-   const {token, refreshInSecs} = await fetchSpotifyToken();
-   storeSpotifyToken(token);
-   storeSpotifyRefreshTime(refreshInSecs * 1000);
+export class Spotify {
+
+  static auth = async () => {
+    console.log("spotify authing...")
+    const {token, refreshInSecs} = await Spotify.fetchToken();
+    window.localStorage.setItem("spotifyToken", token)
+    window.localStorage.setItem("refreshTime", Date.now() + refreshInSecs * 1000);
   }
-}
 
-const fetchSpotifyToken = () => {
-  return fetch(`https://accounts.spotify.com/api/token`, {
-    method: "POST",
-    headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": `Basic ${(new Buffer(client_id + ':' + client_secret).toString('base64'))}`
-        },
-    body:
-      "grant_type=client_credentials"
+  static isAuthRequired = () => {
+    const storedToken = window.localStorage.getItem("token")
+    const refreshTime = window.localStorage.getItem("refreshTime")
+    return !storedToken || !refreshTime || refreshTime < Date.now()
+  }
 
-  }).then(res => {
-    return res.json()
-}).then(res => {
-  return {
-    token: res.access_token,
-    refreshInSecs: res.expires_in
-  };
-})
-}
 
-export const fetchSpotifyArtistIdAndImage = (token, artist) => {
-  return fetch(`https://api.spotify.com/v1/search?q=${artist}&type=artist`, {
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
-    }
-  }).then(res => {
-    return res.json()
-  }).then(res => {
-    const artistItem = res.artists.items[0]
-    return artistItem
-      ? { 
-          image: artistItem.images[0],
-          id: artistItem.id
+  static fetchTopTracks = (token, artist) => {
+    return fetchAndReturnJson(`https://api.spotify.com/v1/artists/${artist.id}/top-tracks?country=US`, 
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
         }
-      : null
-  })
-}
-
-const fetchAndReturnJson = (url, parameters) => {
-  return fetch(url, parameters).then(res => {
-    return res.json();
-  })
-}
-export const fetchSpotifyTopTracks = (token, artist) => {
-  return fetchAndReturnJson(`https://api.spotify.com/v1/artists/${artist.id}/top-tracks?country=US`, {
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
-    }
-  }).then(res => {
-    const track = res.tracks[0];
-    const year = getYear(res.tracks).toString();
-    artist.year = year;
-    artist.topTrack = getTopTrackInfo(track, year);
-    return artist;
-  })
-}
-
-const getYear = (tracks) => {
-  return tracks.reduce((acc, track) => {
-    const year = parseInt(track.album.release_date.substring(0, 4));
-    acc = year < acc ? year : acc;
-    return acc;
-  }, 3000);
-}
-const getTopTrackInfo = (track, year) => {
-  const { name: title, duration_ms: duration, id } = track;
-  return {
-    title,
-    duration,
-    year,
-    id,
+      },
+    ).then(res => {
+      if(res) { 
+        const track = res.tracks[0];
+        const year = getYear(res.tracks).toString();
+        artist.year = year;
+        artist.topTrack = getTopTrackInfo(track, year);
+        return artist;        
+      } else console.error("top tracks undefined")
+    })
   }
-}
 
-export const storeSpotifyToken = (token) => {
-  window.localStorage.setItem("token", token);
-}
+  static fetchToken = () => {
+    return fetchAndReturnJson(`https://accounts.spotify.com/api/token`, {
+      method: "POST",
+      headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "Authorization": `Basic ${btoa(client_id + ':' + client_secret)}`
+          },
+      body:
+        "grant_type=client_credentials"
 
-export const getSpotifyToken = (dispatch, setLoading) => {
-  const storedToken = window.localStorage.getItem("token")
-  dispatch(setLoading(true))
-  return storedToken 
-  ? storedToken
-  : spotifyAuth().then(() => {
-    return window.localStorage.getItem("token")
-  })  
-}
+    }).then(res => {
+    return {
+      token: res.access_token,
+      refreshInSecs: res.expires_in
+    };
+  })
+  }
 
-export const storeSpotifyRefreshTime = (refreshIn) => {
-  const dateNow = Date.now();
-  const date = new Date(dateNow + refreshIn)
-  console.log(date)
-  window.localStorage.setItem("refreshTime", Date.now() + refreshIn);
+  static fetchArtistIdAndImage = (token, artist) => {
+    return fetchAndReturnJson(`https://api.spotify.com/v1/search?q=${artist}&type=artist`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    }).then(res => {
+      if(res) {
+      const artistItem = res.artists.items[0]
+      return artistItem
+        ? { 
+            image: artistItem.images[0],
+            id: artistItem.id
+          }
+        : null        
+      } else console.error(artist + " not found or API limit exceeded")
+
+    })
+  }
+
+  static getToken = (dispatch, setLoading) => {
+    dispatch(setLoading(true))
+    return Spotify.isAuthRequired()
+    ? Spotify.auth().then(() => {
+      return window.localStorage.getItem("spotifyToken")
+    })
+    : window.localStorage.getItem("spotifyToken")
+  }
+
+  static storeRefreshTime = (refreshIn) => {
+    window.localStorage.setItem("refreshTime", Date.now() + refreshIn);
+
+}
 }

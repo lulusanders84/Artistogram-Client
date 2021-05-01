@@ -9,12 +9,14 @@ import store from '../store.js';
 import logo from '../aLogo.png';
 import { saveDestination } from '../actions';
 import { connect } from 'react-redux';
+import DeleteArtistogram from './delete-artistogram';
 
 export class NavBar extends React.Component {
   handleSaveDestination(event) {
     event.preventDefault();
     this.props.dispatch(saveDestination('/dashboard'));
   }
+
   render() {
     const navBarLinks =
       navBarLinksData.reduce((acc, data) => {
@@ -45,6 +47,7 @@ export class NavBar extends React.Component {
           <Link to='/dashboard'><img src={logo} alt="Click for dashboard"/></Link>
         </div>
         <h1 className="nav-title">{this.props.title}</h1>
+        <DeleteArtistogram pageTitle={this.props.title} />
         <ul className="menu">
           {loggedIn(this.props.page)}
           {navBarLinks}

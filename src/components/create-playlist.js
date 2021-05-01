@@ -3,7 +3,6 @@ import './main.css';
 import './hex-grid.css';
 import {buildArtistogramPlaylist} from '../actions'
 import {connect} from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 export class CreatePlaylist extends React.Component {

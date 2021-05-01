@@ -6,7 +6,7 @@ cache:
 deploy:
   provider: heroku
   api_key:
-    secure: 6c330cc5-6eeb-49ac-9733-93786685cd5a
+    secure: b58f604e-227e-4101-9d35-ce42854e085f
   app: artistogram-client
   on:
     repo: lulusanders84/artistogram
