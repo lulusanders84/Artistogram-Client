@@ -7,10 +7,13 @@ import {
   setPlaylist,
   sortArtistsToDecades, 
   addArtistogramArtists } from '../';
+import { timeout } from '../../libs/timeout';
 
 
 
 export const buildArtistogramArtists = (focalArtist) => async (dispatch) => {
+  dispatch(setLoading(true))
+  await timeout(3000)
   const token = await Spotify.getToken(dispatch, setLoading);
   fetchSimilarArtists(focalArtist)
     .then(artists => {

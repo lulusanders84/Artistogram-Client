@@ -9,7 +9,6 @@ export function DeleteArtistogram(props) {
   const { pageTitle } = props
   const [visible, setVisible] = useState(false)
   useEffect(() => {
-    console.log(props)
     if(pageTitle.includes("Dashboard")) {
       setVisible(false)
     } else if(props.savedArtistograms && props.savedArtistograms.some(gram => gram.name === props.focalArtist.name)) {

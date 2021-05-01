@@ -2,14 +2,14 @@
 
 export function sortArtistsToDecades(artists) {
   artists = artists.map(artist => {
-    if (artist.year !== undefined) {
+    if (artist !== undefined) {
       artist.decade = artist.year.substring(2);
     }
     return artist;
   });
   let sortedArtists = { "5": [], "6": [], "7": [], "8": [], "9": [], "0": [], "1": [] };
   artists.forEach(artist => {
-    if (artist.year !== undefined) {
+    if (artist !== undefined) {
       let decade = artist.decade.split('');
       if (artist.type === 'Person') {
         decade = parseInt(decade[0]) + 3;

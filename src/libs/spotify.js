@@ -1,6 +1,7 @@
 import { fetchAndReturnJson } from "./fetchAndReturnJson";
 import { getTopTrackInfo } from "./getTopTrackInfo";
 import { getYear } from "./getYear";
+
 const client_id = "48bc0c9c264c40e3ae92c5b0719547bd";
 const client_secret = "c9ea9e59b7374629a9280aee5314d942"
 
@@ -19,18 +20,23 @@ export class Spotify {
     return !storedToken || !refreshTime || refreshTime < Date.now()
   }
 
+
   static fetchTopTracks = (token, artist) => {
-    return fetchAndReturnJson(`https://api.spotify.com/v1/artists/${artist.id}/top-tracks?country=US`, {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      }
-    }).then(res => {
-      const track = res.tracks[0];
-      const year = getYear(res.tracks).toString();
-      artist.year = year;
-      artist.topTrack = getTopTrackInfo(track, year);
-      return artist;
+    return fetchAndReturnJson(`https://api.spotify.com/v1/artists/${artist.id}/top-tracks?country=US`, 
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        }
+      },
+    ).then(res => {
+      if(res) { 
+        const track = res.tracks[0];
+        const year = getYear(res.tracks).toString();
+        artist.year = year;
+        artist.topTrack = getTopTrackInfo(track, year);
+        return artist;        
+      } else console.error("top tracks undefined")
     })
   }
 
@@ -59,13 +65,16 @@ export class Spotify {
         "Authorization": `Bearer ${token}`
       }
     }).then(res => {
+      if(res) {
       const artistItem = res.artists.items[0]
       return artistItem
         ? { 
             image: artistItem.images[0],
             id: artistItem.id
           }
-        : null
+        : null        
+      } else console.error(artist + " not found or API limit exceeded")
+
     })
   }
 

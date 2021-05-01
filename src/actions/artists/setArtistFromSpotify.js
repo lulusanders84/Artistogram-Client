@@ -8,7 +8,7 @@ export const setArtistFromSpotify = async (token, artist) => {
       const { image, id } = res;
       return {
         name: artist,
-        imageUrl: image.url,
+        imageUrl: image ? image.url : "",
         id,
       };
     } else

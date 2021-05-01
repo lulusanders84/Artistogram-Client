@@ -24,7 +24,6 @@ export class ArtistogramIcon extends React.Component {
   };
 
   handleSetFocalArtist(artist) {
-    console.log(artist)
     this.props.dispatch(setFocalArtist(artist));
     this.props.dispatch(buildArtistogramArtists(artist.name));
   }
